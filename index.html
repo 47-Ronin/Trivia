@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trivia</title>
+    <style>
+        #cards {
+            border: 1px solid red;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .card {
+            height: 175px;
+            width: 33%;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <div id="question">
+<!--        Question goes here-->
+    </div>
+    <div id="cards">
+<!--        Cards generate here-->
+    </div>
+</div>
+
+<!--<script src="js/main-code.js"></script>-->
+<script>
+    const genre1 = {
+        "row1": [{
+            "number" : 1,
+            "q" : "Is Australia real?",
+            "choices" : ["True", "False"],
+            "answer" : "False"
+        }, {
+            "number" : 2,
+            "q" : "Epstien was murdered",
+            "choices" : ["True", "False"],
+            "answer" : "True"
+        }, {
+            "number" : 3,
+            "q" : "The answer is either true or false",
+            "choices" : ["False", "True"],
+            "answer" : "False"
+        }],
+        "row2": [{
+            "number" : 1,
+            "q" : "The answer is d",
+            "choices" : ["A", "B", "C", "G"],
+            "answer" : "Z"
+        }, {
+            "number" : 2,
+            "q" : "The anwser is !truen't",
+            "choices" : ["False", "True"],
+            "answer" : "True"
+        }, {
+            "number" : 3,
+            "q" : "Bleh",
+            "choices" : ["False", "True"],
+            "answer" : "True"
+        }],
+    };
+
+    let selectedGenre = genre1;
+    let selectedQuestion = {};
+
+    const cards = document.getElementById("cards");
+
+    function answerQuestion(response) {
+        console.log("The question asked:" + selectedQuestion.answer + ". \nThe answer you gave: " + response);
+        if (selectedQuestion.answer === response) {
+            console.log("Correct!");
+            return "Correct!"
+        }
+        else {
+            console.log("WRONG!!!!");
+            return "WRONG!!!!"
+        }
+    }
+
+    function selectQuestion(row, index) {
+        selectedQuestion = selectedGenre[row][index];
+        console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices);
+        return selectedGenre[row][index]
+    }
+
+    function makeCard(item){
+            cards.innerHTML += `<div class='card'><p>Question No.${item.number}</p><p>${item.q}</p><p>${item.choices}</p></div>`;
+    }
+
+    function showQuestions(){
+        selectedGenre.row1.forEach(function (item) {makeCard(item)});
+        selectedGenre.row2.forEach(function (item) {makeCard(item)});
+    }
+    showQuestions();
+    selectQuestion("row1", 0);
+    answerQuestion("False");
+</script>
+</body>
+</html>
