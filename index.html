@@ -3,18 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Trivia</title>
-    <style>
-        #cards {
-            border: 1px solid red;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .card {
-            height: 175px;
-            width: 19.5%;
-            border: 1px solid black;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -225,28 +214,28 @@
         }, {
             "number" : 2,
             "q" : "What is does <code><!DOCTYPE html></code> mean?",
-            "choices" : ["A: It means the document is a webpage", "B: It clarifies the version of HTML used", "C: It serves no purpose", "D: It tells your editor what HTML is"],
+            "choices" : ["<em class='option-letter'>A</em> It means the document is a webpage", "<em class='option-letter'>B</em> It clarifies the version of HTML used", "C: It serves no purpose", "D: It tells your editor what HTML is"],
             "answer" : "B",
             "value" : 100,
             "available" : true
         }, {
             "number" : 3,
             "q" : "A Boolean value is always either true or false",
-            "choices" : ["A: True", "B: False"],
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
             "answer" : "A",
             "value" : 100,
             "available" : true
         }, {
             "number" : 4,
             "q" : "jQuery is dead",
-            "choices" : ["A: Yes, it is no longer in use by modern companies", "B: jQuery is immortal"],
+            "choices" : ["<em class='option-letter'>A</em> Yes, it is no longer in use by modern companies", "<em class='option-letter'>B</em> jQuery is immortal"],
             "answer" : "B",
             "value" : 100,
             "available" : true
         }, {
             "number" : 5,
             "q" : "The 'a' tag is short for 'Anchor'",
-            "choices" : ["A: True", "B: False"],
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
             "answer" : "A",
             "value" : 100,
             "available" : true
@@ -254,22 +243,22 @@
         "row2": [{
             "number" : 1,
             "q" : "JavaScript is a low-level language.",
-            "choices" : ["A: True", "B: False"],
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
             "answer" : "B",
             "value" : 200,
             "available" : true
         }, {
             "number" : 2,
-            "q" : "JavaScript calculations can be inaccurate when ",
-            "choices" : ["False", "True"],
-            "answer" : "False",
+            "q" : "JavaScript calculations can be inaccurate when used with floats",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
             "value" : 200,
             "available" : true
         }, {
             "number" : 3,
             "q" : "Bleh",
-            "choices" : ["False", "True"],
-            "answer" : "True",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
             "value" : 200,
             "available" : true
         }, {
@@ -368,9 +357,9 @@
             "available" : true
         }, {
             "number" : 2,
-            "q" : "The answer is:(!(true === !(false === 0 && false == 0) && !(false === 'false')) || true)",
+            "q" : "The answer is: !(true === !(false === 0 && false == 0) && !(false === 'false')) || !(!true)",
             "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer" : "B",
+            "answer" : "A",
             "value" : 500,
             "available" : true
         }, {
