@@ -245,7 +245,7 @@
             "available" : true
         }, {
             "number" : 5,
-            "q" : "The 'p' tag is short for 'Anchor'",
+            "q" : "The 'a' tag is short for 'Anchor'",
             "choices" : ["A: True", "B: False"],
             "answer" : "A",
             "value" : 100,
@@ -260,7 +260,7 @@
             "available" : true
         }, {
             "number" : 2,
-            "q" : "",
+            "q" : "JavaScript calculations can be inaccurate when ",
             "choices" : ["False", "True"],
             "answer" : "False",
             "value" : 200,
@@ -346,52 +346,52 @@
             "available" : true
         }, {
             "number" : 4,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
+            "q" : "Which HTML element is NOT a real element?",
+            "choices" : ["<em class='option-letter'>A</em> 'var'", "<em class='option-letter'>B</em> 'tfoot'", "<em class='option-letter'>C</em> 'item'", "<em class='option-letter'>D</em> 'section'"],
             "answer" : "Option1",
             "value" : 400,
             "available" : true
         }, {
             "number" : 5,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
-            "answer" : "Option1",
+            "q" : "the following expression evaluates false: NaN == null",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
             "value" : 400,
             "available" : true
         }],
         "row5": [{
             "number" : 1,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
-            "answer" : "Option1",
+            "q" : "In some cases, null is not always a 'falsey' value.",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
             "value" : 500,
             "available" : true
         }, {
             "number" : 2,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
-            "answer" : "Option1",
+            "q" : "The answer is:(!(true === !(false === 0 && false == 0) && !(false === 'false')) || true)",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
             "value" : 500,
             "available" : true
         }, {
             "number" : 3,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
-            "answer" : "Option1",
+            "q" : "The following code would NOT produce a syntax error: var return = -44 + 30 + -2 * (9 - 9 * 9)",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
             "value" : 500,
             "available" : true
         }, {
             "number" : 4,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
-            "answer" : "Option1",
+            "q" : "What is the difference between setTimeout and setInterval?",
+            "choices" : ["<em class='option-letter'>A</em> SetTimeout executes the internal code after the delay while setInterval does it before", "<em class='option-letter'>B</em> SetInterval executes the internal code after the delay while setTimeout does it before", "<em class='option-letter'>C</em> SetTimeout executes the internal code after the delay while setInterval repeats the code after its delay", "<em class='option-letter'>D</em> SetTimeout is asynchronous while setInterval is not."],
+            "answer" : "C",
             "value" : 500,
             "available" : true
         }, {
             "number" : 5,
-            "q" : "The answer is: !!(!False || !!!True) && !!!True",
-            "choices" : ["A: True", "B: False"],
-            "answer" : "False",
+            "q" : "The answer is: !!((!!!False && !!True) || !!!True) && !!!True",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
             "value" : 500,
             "available" : true
         }],
@@ -433,7 +433,7 @@
     }
 
     function makeCard(item){
-        cards.innerHTML += `<div class='card'><p>Question No.${item.number}</p><p>${item.q}</p><p>${item.choices}</p></div>`;
+        cards.innerHTML += `<div class='card'><p>Question No.${item.number}</p></div>`;
     }
 
     function showQuestions(){
@@ -446,10 +446,12 @@
 
     showQuestions();
 
+
     //===========================
     //KEY:
     //===========================
     // selectQuestion(row, index)
+
 </script>
 </body>
 </html>
