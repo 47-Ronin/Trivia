@@ -342,9 +342,9 @@
             "available" : true
         }, {
             "number" : 5,
-            "q" : "The following expression evaluates to FALSE: NaN == null",
+            "q" : "The following expression evaluates to TRUE.  NaN == null",
             "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer" : "B",
+            "answer" : "A",
             "value" : 400,
             "available" : true
         }],
@@ -420,11 +420,12 @@
         }
     }
 
+    //SELECT FUNCTION
     function selectQuestion(row, index) {
         if (selectedGenre[row][index].available) {
             selectedQuestion = selectedGenre[row][index];
             selectedQuestion.available = false;
-            question.innerHTML = `<p>${selectedQuestion.q}</p><p>${selectedQuestion.choices}</p>`;
+            question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
             question.style.display = "flex";
             console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
             return selectedGenre[row][index]
@@ -436,16 +437,29 @@
         }
     }
 
-    function makeCard(item){
-        cards.innerHTML += `<div class='card'><p>Question No.${item.number}</p></div>`;
+    let num = 0;
+    function makeCard(item, row){
+        const uniqueID = `${row}-${num}`;
+
+        //NOT IMPORTANT
+        cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
+
+
+        //IMPORTANT
+        num++
     }
 
     function showQuestions(){
-        selectedGenre.row1.forEach(function (item) {makeCard(item)});
-        selectedGenre.row2.forEach(function (item) {makeCard(item)});
-        selectedGenre.row3.forEach(function (item) {makeCard(item)});
-        selectedGenre.row4.forEach(function (item) {makeCard(item)});
-        selectedGenre.row5.forEach(function (item) {makeCard(item)});
+        num = 0;
+        selectedGenre.row1.forEach(function (item) {makeCard(item, 1)});
+        num = 0;
+        selectedGenre.row2.forEach(function (item) {makeCard(item, 2)});
+        num = 0;
+        selectedGenre.row3.forEach(function (item) {makeCard(item, 3)});
+        num = 0;
+        selectedGenre.row4.forEach(function (item) {makeCard(item, 4)});
+        num = 0;
+        selectedGenre.row5.forEach(function (item) {makeCard(item, 5)});
     }
 
     showQuestions();
