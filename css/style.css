@@ -1,10 +1,14 @@
+* {
+    color: black;
+}
+
 #cards {
     border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
 }
 .card {
-    height: 175px;
+    /*height: 175px;*/
     width: 19.5%;
     border: 1px solid black;
 }
