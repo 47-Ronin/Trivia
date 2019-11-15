@@ -273,88 +273,88 @@
             "available" : true
         }, {
             "number" : 4,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
+            "q" : "A function within an object is called a...?",
+            "choices" : ["<em class='option-letter'>A</em> Function", "<em class='option-letter'>B</em> Property", "<em class='option-letter'>C</em> IIF", "<em class='option-letter'>D</em> Method"],
             "answer" : "Option1",
             "value" : 200,
             "available" : true
         }, {
             "number" : 5,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
-            "answer" : "Option1",
+            "q" : "Null is the default value for an unassigned variable",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
             "value" : 200,
             "available" : true
         }],
         "row3": [{
             "number" : 1,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
-            "answer" : "Option1",
+            "q" : "What does the following expression evaluate to?  ((true && false) || true) && (true !== 'true')",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "A",
             "value" : 300,
             "available" : true
         }, {
             "number" : 2,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
-            "answer" : "Option1",
+            "q" : "Which of the following would produce a random number between one (1) and fifty (50)?",
+            "choices" : ["<em class='option-letter'>A</em> Math.floor(Math.random(1, 50))", "<em class='option-letter'>B</em> Math.floor(Math.random() * 1, 50)", "<em class='option-letter'>C</em> Math.floor(Math.random() * 50)", "<em class='option-letter'>D</em> Math.floor(Math.random(), 50)"],
+            "answer" : "C",
             "value" : 300,
             "available" : true
         }, {
             "number" : 3,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
-            "answer" : "Option1",
+            "q" : "What is the ES6 version of Math.pow()?",
+            "choices" : ["<em class='option-letter'>A</em> ^", "<em class='option-letter'>B</em> ^*", "<em class='option-letter'>C</em> .e()", "<em class='option-letter'>D</em> **"],
+            "answer" : "D",
             "value" : 300,
             "available" : true
         }, {
             "number" : 4,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
-            "answer" : "Option1",
+            "q" : "The following evaluates to TRUE: '0'",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "A",
             "value" : 300,
             "available" : true
         }, {
             "number" : 5,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
-            "answer" : "Option1",
+            "q" : "The 'img' tag is a void element",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "A",
             "value" : 300,
             "available" : true
         }],
         "row4": [{
             "number" : 1,
-            "q" : "Insert Question",
-            "choices" : ["Option1", "Option2"],
+            "q" : "What does IP stand for?",
+            "choices" : ["<em class='option-letter'>A</em> Internet Protocol", "<em class='option-letter'>B</em> Information Protocol", "<em class='option-letter'>C</em> Information Protection", "<em class='option-letter'>D</em> Internet Protection"],
             "answer" : "Option1",
             "value" : 400,
             "available" : true
         }, {
             "number" : 2,
-            "q" : "Insert Question",
-            "choices" : ["<em class='option-letter'>A</em> ", "<em class='option-letter'>A</em> "],
-            "answer" : "Option1",
+            "q" : "Which of the following is NOT a value that the 'type' attribute of an input tag can have?",
+            "choices" : ["<em class='option-letter'>A</em> Range", "<em class='option-letter'>B</em> Number", "<em class='option-letter'>C</em> Hidden", "<em class='option-letter'>D</em> Checked"],
+            "answer" : "D",
             "value" : 400,
             "available" : true
         }, {
             "number" : 3,
-            "q" : "",
-            "choices" : ["<em class='option-letter'>A</em> ", "<em class='option-letter'>A</em> "],
-            "answer" : "Option1",
+            "q" : "What does the 'meta' tag define?",
+            "choices" : ["<em class='option-letter'>A</em> Information about the user", "<em class='option-letter'>B</em> Information about the site", "<em class='option-letter'>C</em> User input within the site", "<em class='option-letter'>D</em> The aesthetic of the site"],
+            "answer" : "B",
             "value" : 400,
             "available" : true
         }, {
             "number" : 4,
             "q" : "Which HTML element is NOT a real element?",
             "choices" : ["<em class='option-letter'>A</em> 'var'", "<em class='option-letter'>B</em> 'tfoot'", "<em class='option-letter'>C</em> 'item'", "<em class='option-letter'>D</em> 'section'"],
-            "answer" : "Option1",
+            "answer" : "C",
             "value" : 400,
             "available" : true
         }, {
             "number" : 5,
-            "q" : "the following expression evaluates false: NaN == null",
+            "q" : "The following expression evaluates to TRUE.  NaN == null",
             "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer" : "B",
+            "answer" : "A",
             "value" : 400,
             "available" : true
         }],
@@ -629,29 +629,45 @@
     let selectedGenre = nerdy;
     let answeredQuestions = [];
     let selectedQuestion = {};
-    let score = 0;
+    let team1Score = 0;
+    let team2Score = 0;
+    let turn = "team 1";
+
+    function init(){
+        let selectedGenre = programming;
+        let answeredQuestions = [];
+        let selectedQuestion = {};
+        let team1Score = 0;
+        let team2Score = 0;
+        let turn = "team 1";
+    }
+
+    init();
 
     function answerQuestion(response) {
-        console.log("The question asked:" + selectedQuestion.answer + ". \nThe answer you gave: " + response);
+
         question.style.display = "none";
         if (selectedQuestion.answer === response) {
-            score += selectedQuestion.value;
-            console.log(`Current score: ${score}`);
+            if (turn === "team 1"){
+                team1Score += selectedQuestion.value;
+            } else if (turn === "team 2"){
+                team2Score += selectedQuestion.value;
+            }
             return "Correct!"
         }
         else {
-            console.log("WRONG!!!!");
-            return "WRONG!!!!"
+            return "Incorrect!"
         }
     }
 
+    //SELECT FUNCTION
     function selectQuestion(row, index) {
         if (selectedGenre[row][index].available) {
             selectedQuestion = selectedGenre[row][index];
             selectedQuestion.available = false;
-            question.innerHTML = `<p>${selectedQuestion.q}</p><p>${selectedQuestion.choices}</p>`;
+            question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
             question.style.display = "flex";
-            console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices);
+            console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
             return selectedGenre[row][index]
         }
         else {
@@ -661,8 +677,16 @@
         }
     }
 
-    function makeCard(item){
-        cards.innerHTML += `<div class='card'><p>Question No.${item.number}</p></div>`;
+    let num = 0;
+    function makeCard(item, row){
+        const uniqueID = `${row}-${num}`;
+
+        //NOT IMPORTANT
+        cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
+
+
+        //IMPORTANT
+        num++
     }
 
 
@@ -701,15 +725,19 @@
 
 
     function showQuestions(){
-        selectedGenre.row1.forEach(function (item) {makeCard(item)});
-        selectedGenre.row2.forEach(function (item) {makeCard(item)});
-        selectedGenre.row3.forEach(function (item) {makeCard(item)});
-        selectedGenre.row4.forEach(function (item) {makeCard(item)});
-        selectedGenre.row5.forEach(function (item) {makeCard(item)});
+        num = 0;
+        selectedGenre.row1.forEach(function (item) {makeCard(item, 1)});
+        num = 0;
+        selectedGenre.row2.forEach(function (item) {makeCard(item, 2)});
+        num = 0;
+        selectedGenre.row3.forEach(function (item) {makeCard(item, 3)});
+        num = 0;
+        selectedGenre.row4.forEach(function (item) {makeCard(item, 4)});
+        num = 0;
+        selectedGenre.row5.forEach(function (item) {makeCard(item, 5)});
     }
 
     showQuestions();
-
 
     //===========================
     //KEY:
