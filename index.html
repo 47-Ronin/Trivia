@@ -630,6 +630,7 @@
     let answeredQuestions = [];
     let selectedQuestion = {};
     const gameplayD = {
+        scoreLimit: 600,
         team1: {
             name: "",
             score: 0
@@ -643,39 +644,46 @@
             if (this.turn === "team1") {
                 this.turn = "team2";
             }
-            else{
+            else if(this.turn === "team2") {
                 this.turn = "team1";
             }
         },
         answerQuestion: function (response) {
-        question.style.display = "none";
-        if (selectedQuestion.answer === response) {
-            // if (gameplay.turn === "team1"){
-            //     gameplay += selectedQuestion.value;
-            // } else if (gameplay.turn === "team2"){
-            //     team2Score += selectedQuestion.value;
-            // }
-            this[gameplay.turn].score += selectedQuestion.value;
-            this.switchTurn();
-            return "Correct!"
-        }
-        else {
-            return "Incorrect!"
-        }},
+            question.style.display = "none";
+            if (selectedQuestion.answer === response) {
+                this[this.turn].score += selectedQuestion.value;
+                // console.log("Score: " + this[this.turn].score + " Limit: " + this.scoreLimit);
+                if (this[this.turn].score >= this.scoreLimit) {
+                    console.log("Working");
+                    alert(this.turn + " wins!!!");
+                    return "Game Over!"
+                }
+                this.switchTurn();
+                return "Correct!"
+            }
+            else {
+                return "Incorrect!"
+            }
+        },
         selectQuestion: function (row, index) {
-        if (selectedGenre[row][index].available) {
-            selectedQuestion = selectedGenre[row][index];
-            selectedQuestion.available = false;
-            question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
-            question.style.display = "flex";
-            console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
-            return selectedGenre[row][index]
+            if (selectedGenre[row][index].available) {
+                selectedQuestion = selectedGenre[row][index];
+                selectedQuestion.available = false;
+
+
+                question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
+
+
+                question.style.display = "flex";
+                console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
+                return selectedGenre[row][index]
+            }
+            else {
+                console.log("Question is not available");
+                //If unavailable
+                return {}
+            }
         }
-        else {
-            console.log("Question is not available");
-            //If unavailable
-            return {}
-        }}
     };
     let gameplay;
 
@@ -733,9 +741,6 @@
         content += `</div> </div>`
         $("#cards").append(content);
     }
-
-
-
 
     function showQuestions(){
         num = 0;
