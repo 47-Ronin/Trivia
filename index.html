@@ -9,17 +9,21 @@
 </head>
 <body>
 
-<!--<div class="main">-->
-<!--    <div id="question">-->
-<!--&lt;!&ndash;        Question goes here&ndash;&gt;-->
-<!--    </div>-->
-<div id="accordion">
+<div class="main">
+    <div id="question">
+        <!--        Question goes here-->
+    </div>
+    <div id="accordion">
 
-    <div id="cards">
-        <!--        Cards generate here-->
+        <div id="cards">
+            <!--        Cards generate here-->
+        </div>
     </div>
 </div>
-<!--</div>-->
+
+<div id="selectedQuestionModal">
+
+</div>
 
 
 <script src="js/jquery-2.2.4.js"></script>
@@ -692,33 +696,89 @@
         let content = "";
         content += `<div class="card text-white  mb-3" style="max-width: 18rem;">`;
         content += `<div class="card-header bg-success">Question No.${item.number}</div>`;
-        content += `<div class="card-body">`;
-        content += `<h5 class="card-title">${item.q}</h5>`;
-        content += `<p class="card-text">
-                    <!--answer 1---------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
-                    </div>
-                    <!--answer 2---------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
-                    </div>
-                    <!--answer 3 --------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
-                    </div>
-                    <!--answer 4---------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
-                    </div> </p>`
-        content += `</div> </div>`
+        // content += `<div class="card-body">`;
+        // content += `<h5 class="card-title">${item.q}</h5>`;
+        // content += `<p class="card-text">
+        //             <!--answer 1---------------------------------------------->
+        //             <div class="custom-control custom-radio">
+        //                 <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
+        //                 <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
+        //             </div>
+        //             <!--answer 2---------------------------------------------->
+        //             <div class="custom-control custom-radio">
+        //                 <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
+        //                 <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
+        //             </div>
+        //             <!--answer 3 --------------------------------------------->
+        //             <div class="custom-control custom-radio">
+        //                 <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
+        //                 <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
+        //             </div>
+        //             <!--answer 4---------------------------------------------->
+        //             <div class="custom-control custom-radio">
+        //                 <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
+        //                 <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
+        //             </div> </p>`
+        content += `</div>`
         $("#cards").append(content);
 
         //IMPORTANT
+        num++
+    // }
+    //
+
+
+
+    function makeModal(item, row) {
+        const uniqueID = `${row}-${num}`;
+
+        let currentModal = "";
+            currentModal +=
+            <!-- Modal -->
+        `<div class="modal fade" id="modal${uniqueID}" tabindex="-1" role="dialog" aria-labelledby="modal${uniqueID}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Question No.${uniqueID}</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div id="questionCard" >
+        <!--    the Question ------------------------------------------->
+    <div id="questionHolder">
+        <h4> ${item.q}</h4>
+        </div>
+        <!--answer 1------------------------------------------->
+    <div class="custom-control custom-radio">
+        <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
+        </div>
+        <!--answer 2---------------------------------------------->
+    <div class="custom-control custom-radio">
+        <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
+        </div>
+        <!--   answer 3 ------------------------------------------->
+    <div class="custom-control custom-radio">
+        <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
+        </div>
+        <!--    answer 4------------------------------------------->
+    <div class="custom-control custom-radio">
+        <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
+        </div>
+    </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Submit</button>
+        </div>
+        </div>
+        </div>
+        </div>`
+       $("#selectedQuestionModal").html(currentModal);
         num++
     }
 
