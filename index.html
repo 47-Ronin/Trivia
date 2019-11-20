@@ -661,8 +661,21 @@
         }
         else {
             return "Incorrect!"
+        }},
+        selectQuestion: function (row, index) {
+        if (selectedGenre[row][index].available) {
+            selectedQuestion = selectedGenre[row][index];
+            selectedQuestion.available = false;
+            question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
+            question.style.display = "flex";
+            console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
+            return selectedGenre[row][index]
         }
-    }
+        else {
+            console.log("Question is not available");
+            //If unavailable
+            return {}
+        }}
     };
     let gameplay;
 
@@ -676,21 +689,6 @@
     init();
 
     //SELECT FUNCTION
-    function selectQuestion(row, index) {
-        if (selectedGenre[row][index].available) {
-            selectedQuestion = selectedGenre[row][index];
-            selectedQuestion.available = false;
-            question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
-            question.style.display = "flex";
-            console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
-            return selectedGenre[row][index]
-        }
-        else {
-            console.log("Question is not available");
-            //If unavailable
-            return {}
-        }
-    }
 
     let num = 0;
     function makeCard(item, row){
