@@ -10,9 +10,9 @@
 <body>
 
 <!--<div class="main">-->
-<!--    <div id="question">-->
-<!--&lt;!&ndash;        Question goes here&ndash;&gt;-->
-<!--    </div>-->
+    <div id="question">
+<!--        Question goes here-->
+    </div>
     <div id="cards">
 <!--        Cards generate here-->
     </div>
@@ -28,8 +28,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!--<script src="js/main-code.js"></script>-->
 <script>
-    const cards = document.getElementById("cards");
-    const question = document.getElementById("question");
+    let cards = document.getElementById("cards");
+    let question = document.getElementById("question");
 
     const starWars = {
         "row1": [{
@@ -629,36 +629,51 @@
     let selectedGenre = nerdy;
     let answeredQuestions = [];
     let selectedQuestion = {};
-    let team1Score = 0;
-    let team2Score = 0;
-    let turn = "team 1";
-
-    function init(){
-        let selectedGenre = programming;
-        let answeredQuestions = [];
-        let selectedQuestion = {};
-        let team1Score = 0;
-        let team2Score = 0;
-        let turn = "team 1";
-    }
-
-    init();
-
-    function answerQuestion(response) {
-
+    const gameplayD = {
+        team1: {
+            name: "",
+            score: 0
+        },
+        team2: {
+            name: "",
+            score: 0
+        },
+        turn: "team1",
+        switchTurn: function () {
+            if (this.turn === "team1") {
+                this.turn = "team2";
+            }
+            else{
+                this.turn = "team1";
+            }
+        },
+        answerQuestion: function (response) {
         question.style.display = "none";
         if (selectedQuestion.answer === response) {
-            if (turn === "team 1"){
-                team1Score += selectedQuestion.value;
-            } else if (turn === "team 2"){
-                team2Score += selectedQuestion.value;
-            }
+            // if (gameplay.turn === "team1"){
+            //     gameplay += selectedQuestion.value;
+            // } else if (gameplay.turn === "team2"){
+            //     team2Score += selectedQuestion.value;
+            // }
+            this[gameplay.turn].score += selectedQuestion.value;
+            this.switchTurn();
             return "Correct!"
         }
         else {
             return "Incorrect!"
         }
     }
+    };
+    let gameplay;
+
+    function init(){
+        selectedGenre = programming;
+        answeredQuestions = [];
+        selectedQuestion = {};
+        gameplay = gameplayD;
+    }
+
+    init();
 
     //SELECT FUNCTION
     function selectQuestion(row, index) {
