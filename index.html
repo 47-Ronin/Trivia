@@ -266,8 +266,8 @@
             "available" : true
         }, {
             "number" : 3,
-            "q" : "Bleh",
-            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "q" : "Which loop will always iterate at least once?",
+            "choices" : ["<em class='option-letter'>A</em> For", "<em class='option-letter'>B</em> Do","<em class='option-letter'>C</em> While","<em class='option-letter'>D</em> forEach"],
             "answer" : "B",
             "value" : 200,
             "available" : true
@@ -701,7 +701,6 @@
     let num = 0;
     function makeCard(item, row){
         const uniqueID = `${row}-${num}`;
-
         //NOT IMPORTANT
         cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
 
@@ -754,14 +753,7 @@
         num = 0;
         selectedGenre.row5.forEach(function (item) {makeCard(item, 5)});
     }
-
     showQuestions();
-
-    //===========================
-    //KEY:
-    //===========================
-    // selectQuestion(row, index)
-
 </script>
 </body>
 </html>
