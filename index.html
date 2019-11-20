@@ -691,10 +691,10 @@
 
         let content = "";
         content += `<div class="card text-white  mb-3" style="max-width: 18rem;">`;
-        content += `<div class="card-header bg-success" data-toggle="collapse" data-target="#collapse${uniqueID}" aria-expanded="false" aria-controls="collapse${uniqueID}">Question No.${item.number}</div>`;
-        content += `<div class="card-body collapse" id="collapse${uniqueID}>`;
+        content += `<div class="card-header bg-success">Question No.${item.number}</div>`;
+        content += `<div class="card-body">`;
         content += `<h5 class="card-title">${item.q}</h5>`;
-        content += `<div></div><p class="card-text">
+        content += `<p class="card-text">
                     <!--answer 1---------------------------------------------->
                     <div class="custom-control custom-radio">
                         <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
@@ -715,7 +715,7 @@
                         <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
                         <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
                     </div> </p>`
-        content += `</div> </div></div>`
+        content += `</div> </div>`
         $("#cards").append(content);
 
         //IMPORTANT
