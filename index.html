@@ -12,15 +12,7 @@
 <div class="main">
     <div id="question">
         <!--        Question goes here-->
-<!--<div class="main">-->
-    <div id="question">
-<!--        Question goes here-->
-    </div>
-    <div id="cards">
-<!--        Cards generate here-->
-    </div>
     <div id="accordion">
-
         <div id="cards">
             <!--        Cards generate here-->
         </div>
@@ -300,6 +292,7 @@
             "answer": "B",
             "value": 200,
             "available": true
+        }, {
             "number" : 1,
             "q" : "What is CSS?",
             "choices" : ["A: Cascading Style Sheets", "B: Language that adds interactivity", "C: HyperText Markup Language", "D: A library for webpages"],
@@ -335,42 +328,42 @@
             "value" : 100,
             "available" : true
         }],
-        "row2": [{
-            "number" : 1,
-            "q" : "JavaScript is a low-level language.",
-            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer" : "B",
-            "value" : 200,
-            "available" : true
-        }, {
-            "number" : 2,
-            "q" : "JavaScript calculations can be inaccurate when used with floats",
-            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer" : "B",
-            "value" : 200,
-            "available" : true
-        }, {
-            "number" : 3,
-            "q" : "Which loop will always iterate at least once?",
-            "choices" : ["<em class='option-letter'>A</em> For", "<em class='option-letter'>B</em> Do","<em class='option-letter'>C</em> While","<em class='option-letter'>D</em> forEach"],
-            "answer" : "B",
-            "value" : 200,
-            "available" : true
-        }, {
-            "number" : 4,
-            "q" : "A function within an object is called a...?",
-            "choices" : ["<em class='option-letter'>A</em> Function", "<em class='option-letter'>B</em> Property", "<em class='option-letter'>C</em> IIF", "<em class='option-letter'>D</em> Method"],
-            "answer" : "Option1",
-            "value" : 200,
-            "available" : true
-        }, {
-            "number" : 5,
-            "q" : "Null is the default value for an unassigned variable",
-            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer" : "B",
-            "value" : 200,
-            "available" : true
-        }],
+        // "row2": [{
+        //     "number" : 1,
+        //     "q" : "JavaScript is a low-level language.",
+        //     "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+        //     "answer" : "B",
+        //     "value" : 200,
+        //     "available" : true
+        // }, {
+        //     "number" : 2,
+        //     "q" : "JavaScript calculations can be inaccurate when used with floats",
+        //     "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+        //     "answer" : "B",
+        //     "value" : 200,
+        //     "available" : true
+        // }, {
+        //     "number" : 3,
+        //     "q" : "Which loop will always iterate at least once?",
+        //     "choices" : ["<em class='option-letter'>A</em> For", "<em class='option-letter'>B</em> Do","<em class='option-letter'>C</em> While","<em class='option-letter'>D</em> forEach"],
+        //     "answer" : "B",
+        //     "value" : 200,
+        //     "available" : true
+        // }, {
+        //     "number" : 4,
+        //     "q" : "A function within an object is called a...?",
+        //     "choices" : ["<em class='option-letter'>A</em> Function", "<em class='option-letter'>B</em> Property", "<em class='option-letter'>C</em> IIF", "<em class='option-letter'>D</em> Method"],
+        //     "answer" : "Option1",
+        //     "value" : 200,
+        //     "available" : true
+        // }, {
+        //     "number" : 5,
+        //     "q" : "Null is the default value for an unassigned variable",
+        //     "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+        //     "answer" : "B",
+        //     "value" : 200,
+        //     "available" : true
+        // }],
         "row3": [{
             "number": 1,
             "q": "What does the following expression evaluate to?  ((true && false) || true) && (true !== 'true')",
@@ -758,40 +751,30 @@
             if (selectedGenre[row][index].available) {
                 selectedQuestion = selectedGenre[row][index];
                 selectedQuestion.available = false;
-
-    function init() {
-        let selectedGenre = programming;
-        let answeredQuestions = [];
-        let selectedQuestion = {};
-        let team1Score = 0;
-        let team2Score = 0;
-        let turn = "team 1";
-    }
-
                 question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
-
-
-        question.style.display = "none";
-        if (selectedQuestion.answer === response) {
-            if (turn === "team 1") {
-                team1Score += selectedQuestion.value;
-            } else if (turn === "team 2") {
-                team2Score += selectedQuestion.value;
-            }
-            return "Correct!"
-        } else {
-            return "Incorrect!"
                 question.style.display = "flex";
                 console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
-                return selectedGenre[row][index]
-            }
-            else {
-                console.log("Question is not available");
-                //If unavailable
-                return {}
+
+                question.style.display = "none";
+                if (selectedQuestion.answer === response) {
+                    if (gameplay.turn === "team 1") {
+                        team1Score += selectedQuestion.value;
+                    } else if (gameplay.turn === "team 2") {
+                        team2Score += selectedQuestion.value;
+                    }
+                    return "Correct!"
+                } else {
+                    question.style.display = "flex";
+                    console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
+                    return selectedGenre[row][index];
+                else {
+                    console.log("Question is not available");
+                    return {}
+                }
             }
         }
-    };
+
+
     let gameplay;
 
     function init(){
@@ -805,25 +788,20 @@
 
     //SELECT FUNCTION
 
-    function selectQuestion(row, index) {
-        if (selectedGenre[row][index].available) {
-            selectedQuestion = selectedGenre[row][index];
-            selectedQuestion.available = false;
-            question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
-            question.style.display = "flex";
-            console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
-            return selectedGenre[row][index]
-        } else {
-            console.log("Question is not available");
-            //If unavailable
-            return {}
-        }
-    }
-
-    let num = 0;
-
-    function makeCard(item, row) {
-        const uniqueID = `${row}-${num}`;
+    // function selectQuestion(row, index) {
+    //     if (selectedGenre[row][index].available) {
+    //         selectedQuestion = selectedGenre[row][index];
+    //         selectedQuestion.available = false;
+    //         question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
+    //         question.style.display = "flex";
+    //         console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
+    //         return selectedGenre[row][index]
+    //     } else {
+    //         console.log("Question is not available");
+    //         //If unavailable
+    //         return {}
+    //     }
+    // }
 
     let num = 0;
     function makeCard(item, row){
@@ -834,34 +812,34 @@
         let content = "";
         content += `<div class="card text-white  mb-3" style="max-width: 18rem;">`;
         content += `<div class="card-header bg-success">Question No.${item.number}</div>`;
-        // content += `<div class="card-body">`;
-        // content += `<h5 class="card-title">${item.q}</h5>`;
-        // content += `<p class="card-text">
-        //             <!--answer 1---------------------------------------------->
-        //             <div class="custom-control custom-radio">
-        //                 <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
-        //                 <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
-        //             </div>
-        //             <!--answer 2---------------------------------------------->
-        //             <div class="custom-control custom-radio">
-        //                 <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
-        //                 <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
-        //             </div>
-        //             <!--answer 3 --------------------------------------------->
-        //             <div class="custom-control custom-radio">
-        //                 <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
-        //                 <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
-        //             </div>
-        //             <!--answer 4---------------------------------------------->
-        //             <div class="custom-control custom-radio">
-        //                 <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
-        //                 <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
-        //             </div> </p>`
-        content += `</div>`
+        content += `<div class="card-body">`;
+        content += `<h5 class="card-title">${item.q}</h5>`;
+        content += `<p class="card-text">
+                    <!--answer 1---------------------------------------------->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
+                    </div>
+                    <!--answer 2---------------------------------------------->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
+                    </div>
+                    <!--answer 3 --------------------------------------------->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
+                    </div>
+                    <!--answer 4---------------------------------------------->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
+                    </div> </p>`
+        content += `</div>`;
         $("#cards").append(content);
 
         //IMPORTANT
-        num++
+        num++;
     // }
     //
 
