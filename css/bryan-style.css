@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*FONTS*/
+.sacramento {
+    font-family: 'Sacramento', cursive;
+}
+
+.josefin {
+    font-family: 'Josefin Slab', serif;
+}
+
+
+/*BODY/BACKGROUND*/
+body {
+    background-image: url("../img/redBlackBG.png");
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
+
+/*HEADER*/
+#header {
+    font-size: 6rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*scoreholder*/
+
+#scoreHolder {
+    width: 100%;
+    height: 40px;
+    /*opacity: 0;*/
+    margin-bottom: 60px!important;
+
+}
+
+#scoreHolder ul {
+    display: flex;
+    width: 100%;
+    /*opacity: 1;*/
+    list-style-type: none;
+    justify-content: space-evenly;
+
+}
+
+hr {
+    border: 2px solid darkred;
+    border-radius: 4px;
+    width: 50%;
+    margin: auto;
+}
+
+#team1Score, #team2Score, #centerHolderDiv {
+    background-color: white;
+    width: 200px;
+    height: 80px;
+    border: 6px solid darkred;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bolder;
+    line-height: 80px;
+}
+
+#centerHolderDiv {
+    width: 300px;
+}
+
+/*GLOW EFFECTS*/
+/* white glow effect for typewriter on jumbotron*/
+.glow {
+    color: #fff;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+    opacity: 1 !important;
+}
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 4px 4px 5px red, 0 0 10px orangered, 0 0 15px darkred, 0 0 20px red, 0 0 25px orangered, 0 0 30px orangered, 0 0 40px red;
+    }
+    to {
+        text-shadow: 0 0 10px red, 0 0 15px orangered, 0 0 20px darkred, 0 0 25px red, 0 0 30px orange, 0 0 35px orangered, 0 0 40px red;
+    }
+}
+
+
+
+/*question button styling*/
+.col {
+    height: 60px;
+    line-height: 60px;
+    width: 25px;
+    background-color: darkred;
+    opacity: .9;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 15px;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+
+}
+
+.col:hover {
+    color: darkred;
+    background-color: white;
+}
