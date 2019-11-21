@@ -12,6 +12,12 @@
 <div class="main">
     <div id="question">
         <!--        Question goes here-->
+<!--<div class="main">-->
+    <div id="question">
+<!--        Question goes here-->
+    </div>
+    <div id="cards">
+<!--        Cards generate here-->
     </div>
     <div id="accordion">
 
@@ -37,8 +43,8 @@
 
 <!--<script src="js/main-code.js"></script>-->
 <script>
-    const cards = document.getElementById("cards");
-    const question = document.getElementById("question");
+    let cards = document.getElementById("cards");
+    let question = document.getElementById("question");
 
     const starWars = {
         "row1": [{
@@ -294,6 +300,76 @@
             "answer": "B",
             "value": 200,
             "available": true
+            "number" : 1,
+            "q" : "What is CSS?",
+            "choices" : ["A: Cascading Style Sheets", "B: Language that adds interactivity", "C: HyperText Markup Language", "D: A library for webpages"],
+            "answer" : "A",
+            "value" : 100,
+            "available" : true
+        }, {
+            "number" : 2,
+            "q" : "What does <code>!DOCTYPE html</code> mean?",
+            "choices" : ["<em class='option-letter'>A</em> It means the document is a webpage", "<em class='option-letter'>B</em> It clarifies the version of HTML used", "C: It serves no purpose", "D: It tells your editor what HTML is"],
+            "answer" : "B",
+            "value" : 100,
+            "available" : true
+        }, {
+            "number" : 3,
+            "q" : "A Boolean value is always either true or false",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "A",
+            "value" : 100,
+            "available" : true
+        }, {
+            "number" : 4,
+            "q" : "jQuery is dead",
+            "choices" : ["<em class='option-letter'>A</em> Yes, it is no longer in use by modern companies", "<em class='option-letter'>B</em> jQuery is immortal"],
+            "answer" : "B",
+            "value" : 100,
+            "available" : true
+        }, {
+            "number" : 5,
+            "q" : "The 'a' tag is short for 'Anchor'",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "A",
+            "value" : 100,
+            "available" : true
+        }],
+        "row2": [{
+            "number" : 1,
+            "q" : "JavaScript is a low-level language.",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
+            "value" : 200,
+            "available" : true
+        }, {
+            "number" : 2,
+            "q" : "JavaScript calculations can be inaccurate when used with floats",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
+            "value" : 200,
+            "available" : true
+        }, {
+            "number" : 3,
+            "q" : "Which loop will always iterate at least once?",
+            "choices" : ["<em class='option-letter'>A</em> For", "<em class='option-letter'>B</em> Do","<em class='option-letter'>C</em> While","<em class='option-letter'>D</em> forEach"],
+            "answer" : "B",
+            "value" : 200,
+            "available" : true
+        }, {
+            "number" : 4,
+            "q" : "A function within an object is called a...?",
+            "choices" : ["<em class='option-letter'>A</em> Function", "<em class='option-letter'>B</em> Property", "<em class='option-letter'>C</em> IIF", "<em class='option-letter'>D</em> Method"],
+            "answer" : "Option1",
+            "value" : 200,
+            "available" : true
+        }, {
+            "number" : 5,
+            "q" : "Null is the default value for an unassigned variable",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
+            "value" : 200,
+            "available" : true
         }],
         "row3": [{
             "number": 1,
@@ -642,9 +718,46 @@
 
     let answeredQuestions = [];
     let selectedQuestion = {};
-    let team1Score = 0;
-    let team2Score = 0;
-    let turn = "team 1";
+    const gameplayD = {
+        scoreLimit: 600,
+        team1: {
+            name: "",
+            score: 0
+        },
+        team2: {
+            name: "",
+            score: 0
+        },
+        turn: "team1",
+        switchTurn: function () {
+            if (this.turn === "team1") {
+                this.turn = "team2";
+            }
+            else if(this.turn === "team2") {
+                this.turn = "team1";
+            }
+        },
+        answerQuestion: function (response) {
+            question.style.display = "none";
+            if (selectedQuestion.answer === response) {
+                this[this.turn].score += selectedQuestion.value;
+                // console.log("Score: " + this[this.turn].score + " Limit: " + this.scoreLimit);
+                if (this[this.turn].score >= this.scoreLimit) {
+                    console.log("Working");
+                    alert(this.turn + " wins!!!");
+                    return "Game Over!"
+                }
+                this.switchTurn();
+                return "Correct!"
+            }
+            else {
+                return "Incorrect!"
+            }
+        },
+        selectQuestion: function (row, index) {
+            if (selectedGenre[row][index].available) {
+                selectedQuestion = selectedGenre[row][index];
+                selectedQuestion.available = false;
 
     function init() {
         let selectedGenre = programming;
@@ -655,9 +768,8 @@
         let turn = "team 1";
     }
 
-    init();
+                question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
 
-    function answerQuestion(response) {
 
         question.style.display = "none";
         if (selectedQuestion.answer === response) {
@@ -669,10 +781,30 @@
             return "Correct!"
         } else {
             return "Incorrect!"
+                question.style.display = "flex";
+                console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
+                return selectedGenre[row][index]
+            }
+            else {
+                console.log("Question is not available");
+                //If unavailable
+                return {}
+            }
         }
+    };
+    let gameplay;
+
+    function init(){
+        selectedGenre = programming;
+        answeredQuestions = [];
+        selectedQuestion = {};
+        gameplay = gameplayD;
     }
 
+    init();
+
     //SELECT FUNCTION
+
     function selectQuestion(row, index) {
         if (selectedGenre[row][index].available) {
             selectedQuestion = selectedGenre[row][index];
@@ -692,6 +824,12 @@
 
     function makeCard(item, row) {
         const uniqueID = `${row}-${num}`;
+
+    let num = 0;
+    function makeCard(item, row){
+        const uniqueID = `${row}-${num}`;
+        //NOT IMPORTANT
+        cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
 
         let content = "";
         content += `<div class="card text-white  mb-3" style="max-width: 18rem;">`;
@@ -785,6 +923,7 @@
 
     function showQuestions() {
         $("#cards").html("");
+    function showQuestions(){
         num = 0;
         selectedGenre.row1.forEach(function (item) {
             makeCard(item, 1)
@@ -806,14 +945,7 @@
             makeCard(item, 5)
         });
     }
-
     showQuestions();
-
-    //===========================
-    //KEY:
-    //===========================
-    // selectQuestion(row, index)
-
 </script>
 </body>
 </html>
