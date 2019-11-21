@@ -12,17 +12,17 @@
 <div class="main">
     <div id="question">
         <!--        Question goes here-->
+    </div>
     <div id="accordion">
         <div id="cards">
             <!--        Cards generate here-->
         </div>
     </div>
+
+    <div id="selectedQuestionModal">
+    <!--    selected questions goes here-->
+    </div>
 </div>
-
-<div id="selectedQuestionModal">
-
-</div>
-
 
 <script src="js/jquery-2.2.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -221,149 +221,78 @@
         }],
     };
     const programming = {
-        "row1": [{
-            "number": 1,
-            "q": "What is CSS?",
-            "choices": ["A: Cascading Style Sheets", "B: Language that adds interactivity", "C: HyperText Markup Language", "D: A library for webpages"],
-            "answer": "A",
-            "value": 100,
-            "available": true
-        }, {
-            "number": 2,
-            "q": "What is does <code><!DOCTYPE html></code> mean?",
-            "choices": ["<em class='option-letter'>A</em> It means the document is a webpage", "<em class='option-letter'>B</em> It clarifies the version of HTML used", "C: It serves no purpose", "D: It tells your editor what HTML is"],
-            "answer": "B",
-            "value": 100,
-            "available": true
-        }, {
-            "number": 3,
-            "q": "A Boolean value is always either true or false",
-            "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer": "A",
-            "value": 100,
-            "available": true
-        }, {
-            "number": 4,
-            "q": "jQuery is dead",
-            "choices": ["<em class='option-letter'>A</em> Yes, it is no longer in use by modern companies", "<em class='option-letter'>B</em> jQuery is immortal"],
-            "answer": "B",
-            "value": 100,
-            "available": true
-        }, {
-            "number": 5,
-            "q": "The 'a' tag is short for 'Anchor'",
-            "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer": "A",
-            "value": 100,
-            "available": true
-        }],
+            "row1": [{
+                "number": 1,
+                "q": "What is CSS?",
+                "choices": ["A: Cascading Style Sheets", "B: Language that adds interactivity", "C: HyperText Markup Language", "D: A library for webpages"],
+                "answer": "A",
+                "value": 100,
+                "available": true
+            }, {
+                "number": 2,
+                "q": "What is does <code><!DOCTYPE html></code> mean?",
+                "choices": ["<em class='option-letter'>A</em> It means the document is a webpage", "<em class='option-letter'>B</em> It clarifies the version of HTML used", "C: It serves no purpose", "D: It tells your editor what HTML is"],
+                "answer": "B",
+                "value": 100,
+                "available": true
+            }, {
+                "number": 3,
+                "q": "A Boolean value is always either true or false",
+                "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+                "answer": "A",
+                "value": 100,
+                "available": true
+            }, {
+                "number": 4,
+                "q": "jQuery is dead",
+                "choices": ["<em class='option-letter'>A</em> Yes, it is no longer in use by modern companies", "<em class='option-letter'>B</em> jQuery is immortal"],
+                "answer": "B",
+                "value": 100,
+                "available": true
+            }, {
+                "number": 5,
+                "q": "The 'a' tag is short for 'Anchor'",
+                "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+                "answer": "A",
+                "value": 100,
+                "available": true
+            }],
         "row2": [{
-            "number": 1,
-            "q": "JavaScript is a low-level language.",
-            "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer": "B",
-            "value": 200,
-            "available": true
-        }, {
-            "number": 2,
-            "q": "JavaScript calculations can be inaccurate when used with floats",
-            "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer": "B",
-            "value": 200,
-            "available": true
-        }, {
-            "number": 3,
-            "q": "Bleh",
-            "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer": "B",
-            "value": 200,
-            "available": true
-        }, {
-            "number": 4,
-            "q": "A function within an object is called a...?",
-            "choices": ["<em class='option-letter'>A</em> Function", "<em class='option-letter'>B</em> Property", "<em class='option-letter'>C</em> IIF", "<em class='option-letter'>D</em> Method"],
-            "answer": "Option1",
-            "value": 200,
-            "available": true
-        }, {
-            "number": 5,
-            "q": "Null is the default value for an unassigned variable",
-            "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer": "B",
-            "value": 200,
-            "available": true
-        }, {
             "number" : 1,
-            "q" : "What is CSS?",
-            "choices" : ["A: Cascading Style Sheets", "B: Language that adds interactivity", "C: HyperText Markup Language", "D: A library for webpages"],
-            "answer" : "A",
-            "value" : 100,
+            "q" : "JavaScript is a low-level language.",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer" : "B",
+            "value" : 200,
             "available" : true
         }, {
             "number" : 2,
-            "q" : "What does <code>!DOCTYPE html</code> mean?",
-            "choices" : ["<em class='option-letter'>A</em> It means the document is a webpage", "<em class='option-letter'>B</em> It clarifies the version of HTML used", "C: It serves no purpose", "D: It tells your editor what HTML is"],
+            "q" : "JavaScript calculations can be inaccurate when used with floats",
+            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
             "answer" : "B",
-            "value" : 100,
+            "value" : 200,
             "available" : true
         }, {
             "number" : 3,
-            "q" : "A Boolean value is always either true or false",
-            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer" : "A",
-            "value" : 100,
+            "q" : "Which loop will always iterate at least once?",
+            "choices" : ["<em class='option-letter'>A</em> For", "<em class='option-letter'>B</em> Do","<em class='option-letter'>C</em> While","<em class='option-letter'>D</em> forEach"],
+            "answer" : "B",
+            "value" : 200,
             "available" : true
         }, {
             "number" : 4,
-            "q" : "jQuery is dead",
-            "choices" : ["<em class='option-letter'>A</em> Yes, it is no longer in use by modern companies", "<em class='option-letter'>B</em> jQuery is immortal"],
-            "answer" : "B",
-            "value" : 100,
+            "q" : "A function within an object is called a...?",
+            "choices" : ["<em class='option-letter'>A</em> Function", "<em class='option-letter'>B</em> Property", "<em class='option-letter'>C</em> IIF", "<em class='option-letter'>D</em> Method"],
+            "answer" : "Option1",
+            "value" : 200,
             "available" : true
         }, {
             "number" : 5,
-            "q" : "The 'a' tag is short for 'Anchor'",
+            "q" : "Null is the default value for an unassigned variable",
             "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer" : "A",
-            "value" : 100,
+            "answer" : "B",
+            "value" : 200,
             "available" : true
         }],
-        // "row2": [{
-        //     "number" : 1,
-        //     "q" : "JavaScript is a low-level language.",
-        //     "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-        //     "answer" : "B",
-        //     "value" : 200,
-        //     "available" : true
-        // }, {
-        //     "number" : 2,
-        //     "q" : "JavaScript calculations can be inaccurate when used with floats",
-        //     "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-        //     "answer" : "B",
-        //     "value" : 200,
-        //     "available" : true
-        // }, {
-        //     "number" : 3,
-        //     "q" : "Which loop will always iterate at least once?",
-        //     "choices" : ["<em class='option-letter'>A</em> For", "<em class='option-letter'>B</em> Do","<em class='option-letter'>C</em> While","<em class='option-letter'>D</em> forEach"],
-        //     "answer" : "B",
-        //     "value" : 200,
-        //     "available" : true
-        // }, {
-        //     "number" : 4,
-        //     "q" : "A function within an object is called a...?",
-        //     "choices" : ["<em class='option-letter'>A</em> Function", "<em class='option-letter'>B</em> Property", "<em class='option-letter'>C</em> IIF", "<em class='option-letter'>D</em> Method"],
-        //     "answer" : "Option1",
-        //     "value" : 200,
-        //     "available" : true
-        // }, {
-        //     "number" : 5,
-        //     "q" : "Null is the default value for an unassigned variable",
-        //     "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-        //     "answer" : "B",
-        //     "value" : 200,
-        //     "available" : true
-        // }],
         "row3": [{
             "number": 1,
             "q": "What does the following expression evaluate to?  ((true && false) || true) && (true !== 'true')",
@@ -725,8 +654,7 @@
         switchTurn: function () {
             if (this.turn === "team1") {
                 this.turn = "team2";
-            }
-            else if(this.turn === "team2") {
+            } else if (this.turn === "team2") {
                 this.turn = "team1";
             }
         },
@@ -734,7 +662,6 @@
             question.style.display = "none";
             if (selectedQuestion.answer === response) {
                 this[this.turn].score += selectedQuestion.value;
-                // console.log("Score: " + this[this.turn].score + " Limit: " + this.scoreLimit);
                 if (this[this.turn].score >= this.scoreLimit) {
                     console.log("Working");
                     alert(this.turn + " wins!!!");
@@ -742,38 +669,31 @@
                 }
                 this.switchTurn();
                 return "Correct!"
-            }
-            else {
+            } else {
                 return "Incorrect!"
             }
         },
         selectQuestion: function (row, index) {
             if (selectedGenre[row][index].available) {
                 selectedQuestion = selectedGenre[row][index];
-                selectedQuestion.available = false;
-                question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
-                question.style.display = "flex";
-                console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
+                selectedGenre[row][index].available = false;
 
-                question.style.display = "none";
-                if (selectedQuestion.answer === response) {
-                    if (gameplay.turn === "team 1") {
-                        team1Score += selectedQuestion.value;
-                    } else if (gameplay.turn === "team 2") {
-                        team2Score += selectedQuestion.value;
-                    }
-                    return "Correct!"
-                } else {
-                    question.style.display = "flex";
-                    console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
-                    return selectedGenre[row][index];
-                else {
-                    console.log("Question is not available");
-                    return {}
-                }
+
+                //REPLACE WITH MODAL
+                question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
+                // question.style.display = "flex";
+
+
+                console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
+                selectedQuestion = {};
+            }
+            else {
+                //If question is NOT available
+
+                console.log("Unavailable");
             }
         }
-
+    };
 
     let gameplay;
 
@@ -807,7 +727,7 @@
     function makeCard(item, row){
         const uniqueID = `${row}-${num}`;
         //NOT IMPORTANT
-        cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
+        // cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
 
         let content = "";
         content += `<div class="card text-white  mb-3" style="max-width: 18rem;">`;
@@ -824,7 +744,9 @@
                     <div class="custom-control custom-radio">
                         <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
                         <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
-                    </div>
+                    </div>`;
+        if (item.choices.length > 2) {
+            content += `
                     <!--answer 3 --------------------------------------------->
                     <div class="custom-control custom-radio">
                         <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
@@ -834,14 +756,14 @@
                     <div class="custom-control custom-radio">
                         <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
                         <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
-                    </div> </p>`
+                    </div> </p>`;
+        }
         content += `</div>`;
         $("#cards").append(content);
 
         //IMPORTANT
         num++;
-    // }
-    //
+    }
 
 
 
@@ -856,51 +778,50 @@
         <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Question No.${uniqueID}</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-    <div class="modal-body">
-        <div id="questionCard" >
-        <!--    the Question ------------------------------------------->
-    <div id="questionHolder">
-        <h4> ${item.q}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         </div>
-        <!--answer 1------------------------------------------->
-    <div class="custom-control custom-radio">
-        <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
-        <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
-        </div>
-        <!--answer 2---------------------------------------------->
-    <div class="custom-control custom-radio">
-        <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
-        <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
-        </div>
-        <!--   answer 3 ------------------------------------------->
-    <div class="custom-control custom-radio">
-        <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
-        <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
-        </div>
-        <!--    answer 4------------------------------------------->
-    <div class="custom-control custom-radio">
-        <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
-        <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
-        </div>
-    </div>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Submit</button>
-        </div>
-        </div>
-        </div>
-        </div>`
-       $("#selectedQuestionModal").html(currentModal);
+        <div class="modal-body">
+            <div id="questionCard" >
+            <!--    the Question ------------------------------------------->
+        <div id="questionHolder">
+            <h4> ${item.q}</h4>
+            </div>
+            <!--answer 1------------------------------------------->
+        <div class="custom-control custom-radio">
+            <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
+            <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
+            </div>
+            <!--answer 2---------------------------------------------->
+        <div class="custom-control custom-radio">
+            <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
+            <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
+            </div>
+            <!--   answer 3 ------------------------------------------->`;
+        if (item.choices.length >= 2) {
+            currentModal += `<div class="custom-control custom-radio">
+            <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
+            <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
+            </div>
+            <!--    answer 4------------------------------------------->
+            <div class="custom-control custom-radio">
+                <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
+                <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
+            </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Submit</button>
+            </div>
+            </div>
+            </div>
+            </div>`;
+        }
+           $("#selectedQuestionModal").html(currentModal);
         num++
-    }
+    };
 
-
-    function showQuestions() {
-        $("#cards").html("");
     function showQuestions(){
         num = 0;
         selectedGenre.row1.forEach(function (item) {
