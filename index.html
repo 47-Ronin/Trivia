@@ -223,7 +223,7 @@
             "available" : true
         }, {
             "number" : 2,
-            "q" : "What is does <code><!DOCTYPE html></code> mean?",
+            "q" : "What does <code>!DOCTYPE html</code> mean?",
             "choices" : ["<em class='option-letter'>A</em> It means the document is a webpage", "<em class='option-letter'>B</em> It clarifies the version of HTML used", "C: It serves no purpose", "D: It tells your editor what HTML is"],
             "answer" : "B",
             "value" : 100,
@@ -266,8 +266,8 @@
             "available" : true
         }, {
             "number" : 3,
-            "q" : "Bleh",
-            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "q" : "Which loop will always iterate at least once?",
+            "choices" : ["<em class='option-letter'>A</em> For", "<em class='option-letter'>B</em> Do","<em class='option-letter'>C</em> While","<em class='option-letter'>D</em> forEach"],
             "answer" : "B",
             "value" : 200,
             "available" : true
@@ -630,6 +630,7 @@
     let answeredQuestions = [];
     let selectedQuestion = {};
     const gameplayD = {
+        scoreLimit: 600,
         team1: {
             name: "",
             score: 0
@@ -643,39 +644,46 @@
             if (this.turn === "team1") {
                 this.turn = "team2";
             }
-            else{
+            else if(this.turn === "team2") {
                 this.turn = "team1";
             }
         },
         answerQuestion: function (response) {
-        question.style.display = "none";
-        if (selectedQuestion.answer === response) {
-            // if (gameplay.turn === "team1"){
-            //     gameplay += selectedQuestion.value;
-            // } else if (gameplay.turn === "team2"){
-            //     team2Score += selectedQuestion.value;
-            // }
-            this[gameplay.turn].score += selectedQuestion.value;
-            this.switchTurn();
-            return "Correct!"
-        }
-        else {
-            return "Incorrect!"
-        }},
+            question.style.display = "none";
+            if (selectedQuestion.answer === response) {
+                this[this.turn].score += selectedQuestion.value;
+                // console.log("Score: " + this[this.turn].score + " Limit: " + this.scoreLimit);
+                if (this[this.turn].score >= this.scoreLimit) {
+                    console.log("Working");
+                    alert(this.turn + " wins!!!");
+                    return "Game Over!"
+                }
+                this.switchTurn();
+                return "Correct!"
+            }
+            else {
+                return "Incorrect!"
+            }
+        },
         selectQuestion: function (row, index) {
-        if (selectedGenre[row][index].available) {
-            selectedQuestion = selectedGenre[row][index];
-            selectedQuestion.available = false;
-            question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
-            question.style.display = "flex";
-            console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
-            return selectedGenre[row][index]
+            if (selectedGenre[row][index].available) {
+                selectedQuestion = selectedGenre[row][index];
+                selectedQuestion.available = false;
+
+
+                question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
+
+
+                question.style.display = "flex";
+                console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
+                return selectedGenre[row][index]
+            }
+            else {
+                console.log("Question is not available");
+                //If unavailable
+                return {}
+            }
         }
-        else {
-            console.log("Question is not available");
-            //If unavailable
-            return {}
-        }}
     };
     let gameplay;
 
@@ -693,7 +701,6 @@
     let num = 0;
     function makeCard(item, row){
         const uniqueID = `${row}-${num}`;
-
         //NOT IMPORTANT
         cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
 
@@ -734,9 +741,6 @@
         $("#cards").append(content);
     }
 
-
-
-
     function showQuestions(){
         num = 0;
         selectedGenre.row1.forEach(function (item) {makeCard(item, 1)});
@@ -749,14 +753,7 @@
         num = 0;
         selectedGenre.row5.forEach(function (item) {makeCard(item, 5)});
     }
-
     showQuestions();
-
-    //===========================
-    //KEY:
-    //===========================
-    // selectQuestion(row, index)
-
 </script>
 </body>
 </html>
