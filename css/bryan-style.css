@@ -115,3 +115,22 @@ hr {
     color: darkred;
     background-color: white;
 }
+
+
+/*MODAL STYLING*/
+
+.modal {
+    /*background-color: darkred;*/
+    /*border: 5px solid white;*/
+    color: lightgray;
+}
+
+.modal-body {
+    background-color: darkred;
+}
+
+.modal-content {
+    background-color: darkred;
+    border: 5px solid white;
+
+}

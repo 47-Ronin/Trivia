@@ -17,13 +17,13 @@
 <!--question cards/buttons-->
 <div class="container mt-0">
     <div class="row mt-0">
-        <div class="col">
+        <div id="row1-0" class="col">
             100
         </div>
-        <div class="col">
+        <div id="row1-1" class="col">
             100
         </div>
-        <div class="col">
+        <div id="row1-2" class="col">
             100
         </div>
         <div class="col">
@@ -122,18 +122,16 @@
 </div>
 
 
-
 <!--modal-->
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary fixed-top" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
+<button type="button" class="btn btn-secondary fixed-top" data-toggle="modal" data-target="#exampleModal">
+    Launch  modal
 </button>
 
 <!-- Modal Holder -->
 <div id="modalHolder">
 </div>
-
 
 
 <script src="js/jquery-2.2.4.js"></script>
@@ -369,40 +367,40 @@
             "available": true
         }],
         "row2": [{
-            "number" : 1,
-            "q" : "JavaScript is a low-level language.",
-            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer" : "B",
-            "value" : 200,
-            "available" : true
+            "number": 1,
+            "q": "JavaScript is a low-level language.",
+            "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer": "B",
+            "value": 200,
+            "available": true
         }, {
-            "number" : 2,
-            "q" : "JavaScript calculations can be inaccurate when used with floats",
-            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer" : "B",
-            "value" : 200,
-            "available" : true
+            "number": 2,
+            "q": "JavaScript calculations can be inaccurate when used with floats",
+            "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer": "B",
+            "value": 200,
+            "available": true
         }, {
-            "number" : 3,
-            "q" : "Which loop will always iterate at least once?",
-            "choices" : ["<em class='option-letter'>A</em> For", "<em class='option-letter'>B</em> Do","<em class='option-letter'>C</em> While","<em class='option-letter'>D</em> forEach"],
-            "answer" : "B",
-            "value" : 200,
-            "available" : true
+            "number": 3,
+            "q": "Which loop will always iterate at least once?",
+            "choices": ["<em class='option-letter'>A</em> For", "<em class='option-letter'>B</em> Do", "<em class='option-letter'>C</em> While", "<em class='option-letter'>D</em> forEach"],
+            "answer": "B",
+            "value": 200,
+            "available": true
         }, {
-            "number" : 4,
-            "q" : "A function within an object is called a...?",
-            "choices" : ["<em class='option-letter'>A</em> Function", "<em class='option-letter'>B</em> Property", "<em class='option-letter'>C</em> IIF", "<em class='option-letter'>D</em> Method"],
-            "answer" : "Option1",
-            "value" : 200,
-            "available" : true
+            "number": 4,
+            "q": "A function within an object is called a...?",
+            "choices": ["<em class='option-letter'>A</em> Function", "<em class='option-letter'>B</em> Property", "<em class='option-letter'>C</em> IIF", "<em class='option-letter'>D</em> Method"],
+            "answer": "Option1",
+            "value": 200,
+            "available": true
         }, {
-            "number" : 5,
-            "q" : "Null is the default value for an unassigned variable",
-            "choices" : ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer" : "B",
-            "value" : 200,
-            "available" : true
+            "number": 5,
+            "q": "Null is the default value for an unassigned variable",
+            "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
+            "answer": "B",
+            "value": 200,
+            "available": true
         }],
         "row3": [{
             "number": 1,
@@ -785,29 +783,21 @@
             }
         },
         selectQuestion: function (row, index) {
-            const uniqueID = `${row}-${num}`;
+            const uniqueID = `${row}-${index}`;
+            console.log(`${row}-${index}`)
             if (selectedGenre[row][index].available) {
                 selectedQuestion = selectedGenre[row][index];
                 selectedGenre[row][index].available = false;
 
-
                 //REPLACE WITH MODAL
                 // question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
-                makeModal(selectedQuestion, row)
+                makeModal(selectedQuestion, row);
                 // question.style.display = "flex";
-                //
-                // ${selectedQuestion.number}
-                // ${selectedQuestion.q}
-                // ${selectedQuestion.choices[0]}
-                // ${selectedQuestion.choices[1]}
-                // ${selectedQuestion.choices[2]}
-                // ${selectedQuestion.choices[3]}
 
 
                 console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
                 selectedQuestion = {};
-            }
-            else {
+            } else {
                 //If question is NOT available
 
                 console.log("Unavailable");
@@ -817,7 +807,7 @@
 
     let gameplay;
 
-    function init(){
+    function init() {
         selectedGenre = programming;
         answeredQuestions = [];
         selectedQuestion = {};
@@ -844,49 +834,48 @@
     // }
 
 
-
     let num = 0;
-    function makeCard(item, row){
-        const uniqueID = `${row}-${num}`;
-        //NOT IMPORTANT
-        // cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
 
-        let content = "";
-        content += `<div class="card text-white  mb-3" style="max-width: 18rem;">`;
-        content += `<div class="card-header bg-success">Question No.${item.number}</div>`;
-        content += `<div class="card-body">`;
-        content += `<h5 class="card-title">${item.q}</h5>`;
-        content += `<p class="card-text">
-                    <!--answer 1---------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
-                    </div>
-                    <!--answer 2---------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
-                    </div>`;
-        if (item.choices.length > 2) {
-            content += `
-                    <!--answer 3 --------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
-                    </div>
-                    <!--answer 4---------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
-                    </div> </p>`;
-        }
-        content += `</div>`;
-        $("#cards").append(content);
-
-        //IMPORTANT
-        num++;
-    }
-
+    // function makeCard(item, row) {
+    //     const uniqueID = `${row}-${num}`;
+    //     //NOT IMPORTANT
+    //     // cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
+    //
+    //     let content = "";
+    //     content += `<div class="card text-white  mb-3" style="max-width: 18rem;">`;
+    //     content += `<div class="card-header bg-success">Question No.${item.number}</div>`;
+    //     content += `<div class="card-body">`;
+    //     content += `<h5 class="card-title">${item.q}</h5>`;
+    //     content += `<p class="card-text">
+    //                 <!--answer 1---------------------------------------------->
+    //                 <div class="custom-control custom-radio">
+    //                     <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
+    //                     <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
+    //                 </div>
+    //                 <!--answer 2---------------------------------------------->
+    //                 <div class="custom-control custom-radio">
+    //                     <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
+    //                     <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
+    //                 </div>`;
+    //     if (item.choices.length > 2) {
+    //         content += `
+    //                 <!--answer 3 --------------------------------------------->
+    //                 <div class="custom-control custom-radio">
+    //                     <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
+    //                     <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
+    //                 </div>
+    //                 <!--answer 4---------------------------------------------->
+    //                 <div class="custom-control custom-radio">
+    //                     <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
+    //                     <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
+    //                 </div> </p>`;
+    //     }
+    //     content += `</div>`;
+    //     $("#cards").append(content);
+    //
+    //     //IMPORTANT
+    //     num++;
+    // }
 
 
     function makeModal(item, row) {
@@ -919,9 +908,9 @@
         <div class="custom-control custom-radio">
             <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
             <label class="custom-control-label" for="B${uniqueID}">${selectedQuestion.choices[1]}</label>
-            </div>
-            <!--   answer 3 ------------------------------------------->`;
-        if (item.choices.length >= 2) {
+            </div>`;
+        // <!--   answer 3 ------------------------------------------->;
+        if (selectedQuestion.choices.length > 2) {
             currentModal += `<div class="custom-control custom-radio">
             <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
             <label class="custom-control-label" for="C${uniqueID}">${selectedQuestion.choices[2]}</label>
@@ -930,18 +919,20 @@
             <div class="custom-control custom-radio">
                 <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
                 <label class="custom-control-label" for="D${uniqueID}">${selectedQuestion.choices[3]}</label>
-            </div>
-            </div>
+            </div>`
+        }
+        currentModal += `</div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary">Submit</button>
             </div>
             </div>
             </div>
             </div>`;
-        }
+
+
         $("#modalHolder").html(currentModal);
-        num++
+        num++;
     };
 
 
@@ -951,29 +942,30 @@
     // ${selectedQuestion.choices[3]}
 
 
-    function showQuestions(){
-        num = 0;
-        selectedGenre.row1.forEach(function (item) {
-            makeCard(item, 1)
-        });
-        num = 0;
-        selectedGenre.row2.forEach(function (item) {
-            makeCard(item, 2)
-        });
-        num = 0;
-        selectedGenre.row3.forEach(function (item) {
-            makeCard(item, 3)
-        });
-        num = 0;
-        selectedGenre.row4.forEach(function (item) {
-            makeCard(item, 4)
-        });
-        num = 0;
-        selectedGenre.row5.forEach(function (item) {
-            makeCard(item, 5)
-        });
-    }
-    showQuestions();
+    // function showQuestions() {
+    //     num = 0;
+    //     selectedGenre.row1.forEach(function (item) {
+    //         makeCard(item, 1)
+    //     });
+    //     num = 0;
+    //     selectedGenre.row2.forEach(function (item) {
+    //         makeCard(item, 2)
+    //     });
+    //     num = 0;
+    //     selectedGenre.row3.forEach(function (item) {
+    //         makeCard(item, 3)
+    //     });
+    //     num = 0;
+    //     selectedGenre.row4.forEach(function (item) {
+    //         makeCard(item, 4)
+    //     });
+    //     num = 0;
+    //     selectedGenre.row5.forEach(function (item) {
+    //         makeCard(item, 5)
+    //     });
+    // }
+
+    // showQuestions();
 </script>
 </body>
 </html>
