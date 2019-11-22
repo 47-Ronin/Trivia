@@ -1,8 +1,8 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
 
 /*FONTS*/
 .sacramento {
@@ -98,7 +98,7 @@ hr {
 .question-card {
     height: 60px;
     line-height: 60px;
-    width: 50px;
+    width: 100px;
     background-color: darkred;
     opacity: .9;
     border: 2px solid black;
@@ -119,6 +119,9 @@ hr {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    width: 80%;
+    margin: auto;
+
 }
 
 .question-row{
@@ -142,4 +145,6 @@ hr {
     background-color: darkred;
     border: 5px solid white;
 
+}
+.question-buttons {
 }
