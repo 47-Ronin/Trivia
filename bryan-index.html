@@ -824,12 +824,6 @@
         selectedGenre.row1.forEach(function (item) {
             makeCard(item, 1);
         });
-        for (let it = 1; it <= 5; it++){
-            document.getElementById(`card-1-${it}`).addEventListener("click", () => {
-                gameplay.selectQuestion("row1", it);
-                //console.log("TEST: " + `card-1-${it}`);
-            });
-        }
 
         num = 0;
         document.getElementById("questionButtons").innerHTML += "<div class='question-row' id='row-2'></div>";
@@ -851,6 +845,32 @@
         selectedGenre.row5.forEach(function (item) {
             makeCard(item, 5)
         });
+
+        for (let it = 1; it <= 5; it++){
+            document.getElementById(`card-1-${it}`).addEventListener("click", () => {
+                gameplay.selectQuestion("row1", it - 1);
+            });
+        }
+        for (let it = 1; it <= 5; it++){
+            document.getElementById(`card-2-${it}`).addEventListener("click", () => {
+                gameplay.selectQuestion("row2", it - 1);
+            });
+        }
+        for (let it = 1; it <= 5; it++){
+            document.getElementById(`card-3-${it}`).addEventListener("click", () => {
+                gameplay.selectQuestion("row3", it - 1);
+            });
+        }
+        for (let it = 1; it <= 5; it++){
+            document.getElementById(`card-4-${it}`).addEventListener("click", () => {
+                gameplay.selectQuestion("row4", it - 1);
+            });
+        }
+        for (let it = 1; it <= 5; it++){
+            document.getElementById(`card-5-${it}`).addEventListener("click", () => {
+                gameplay.selectQuestion("row5", it - 1);
+            });
+        }
     }
 
     showQuestions();
