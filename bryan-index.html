@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Deimos Trivia</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab|Sacramento&display=swap" rel="stylesheet">
@@ -15,94 +15,9 @@
 <hr class="glow">
 
 <!--question cards/buttons-->
-<div class="container mt-0">
-    <div class="row mt-0">
-        <div id="row1-0" class="col">
-            100
-        </div>
-        <div id="row1-1" class="col">
-            100
-        </div>
-        <div id="row1-2" class="col">
-            100
-        </div>
-        <div class="col">
-            100
-        </div>
-        <div class="col">
-            100
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            200
-        </div>
-        <div class="col">
-            200
-        </div>
-        <div class="col">
-            200
-        </div>
-        <div class="col">
-            200
-        </div>
-        <div class="col">
-            200
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            300
-        </div>
-        <div class="col">
-            300
-        </div>
-        <div class="col">
-            300
-        </div>
-        <div class="col">
-            300
-        </div>
-        <div class="col">
-            300
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            400
-        </div>
-        <div class="col">
-            400
-        </div>
-        <div class="col">
-            400
-        </div>
-        <div class="col">
-            400
-        </div>
-        <div class="col">
-            400
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col">
-            500
-        </div>
-        <div class="col">
-            500
-        </div>
-        <div class="col">
-            500
-        </div>
-        <div class="col">
-            500
-        </div>
-        <div class="col">
-            500
-        </div>
-    </div>
-</div>
+<div id="questionButtons">
 
+</div>
 
 <!--scorecard holder for bottom of page-->
 <div id="scoreHolder" class="fixed-bottom">
@@ -126,7 +41,7 @@
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-secondary fixed-top" data-toggle="modal" data-target="#exampleModal">
-    Launch  modal
+    Launch modal
 </button>
 
 <!-- Modal Holder -->
@@ -339,7 +254,7 @@
             "available": true
         }, {
             "number": 2,
-            "q": "What is does <code><!DOCTYPE html></code> mean?",
+            "q": "What does <code><!DOCTYPE html></code> mean?",
             "choices": ["<em class='option-letter'>A</em> It means the document is a webpage", "<em class='option-letter'>B</em> It clarifies the version of HTML used", "C: It serves no purpose", "D: It tells your editor what HTML is"],
             "answer": "B",
             "value": 100,
@@ -743,9 +658,6 @@
 
 
     let selectedGenre = programming;
-    // let selectedGenre = nerdy;
-    // let selectedGenre = starWars;
-
 
     let answeredQuestions = [];
     let selectedQuestion = {};
@@ -790,7 +702,7 @@
                 selectedGenre[row][index].available = false;
 
                 //REPLACE WITH MODAL
-                // question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
+
                 makeModal(selectedQuestion, row);
                 // question.style.display = "flex";
 
@@ -816,64 +728,31 @@
 
     init();
 
-    //SELECT FUNCTION
-
-    // function selectQuestion(row, index) {
-    //     if (selectedGenre[row][index].available) {
-    //         selectedQuestion = selectedGenre[row][index];
-    //         selectedQuestion.available = false;
-    //         question.innerHTML = `<p>${selectedQuestion.q}</p><br><p>${selectedQuestion.choices.join("<br>")}</p>`;
-    //         question.style.display = "flex";
-    //         console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
-    //         return selectedGenre[row][index]
-    //     } else {
-    //         console.log("Question is not available");
-    //         //If unavailable
-    //         return {}
-    //     }
-    // }
-
-
     let num = 0;
 
     function makeCard(item, row) {
-        const uniqueID = `${row}-${num}`;
-        //NOT IMPORTANT
-        // cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
+        const uniqueID = `${row}-${item.number}`;
 
         let content = "";
-        content += `<div class="card text-white  mb-3" style="max-width: 18rem;">`;
-        content += `<div class="card-header bg-success">Question No.${item.number}</div>`;
-        content += `<div class="card-body">`;
-        content += `<h5 class="card-title">${item.q}</h5>`;
-        content += `<p class="card-text">
-                    <!--answer 1---------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
-                    </div>
-                    <!--answer 2---------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
-                    </div>`;
-        if (item.choices.length > 2) {
-            content += `
-                    <!--answer 3 --------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
-                    </div>
-                    <!--answer 4---------------------------------------------->
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
-                    </div> </p>`;
-        }
-        content += `</div>`;
-        $("#cards").append(content);
+        content += `
+            <div class="question-card" id='card-${uniqueID}'>
+            <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#${row}-${item.number}">
+             ${item.value}</div></div>`;
+        document.getElementById(`row-${row}`).innerHTML += content;
+        console.log(document.getElementById(`card-${uniqueID}`));
 
-        document.getElementById("");
+        document.getElementById(`card-${uniqueID}`).addEventListener("click", function () {
+            console.log("hello");
+        });
+
+        //document.getElementById(`card-${uniqueID}`).addEventListener("click", function () {
+        // $(`#card-${uniqueID}`).click(function () {
+        //     console.log("success");
+        //     gameplay.selectQuestion(`row-${row}`, num);
+        // });
+
+            // console.log(`row-${row}, num`);
+        // });
 
         //IMPORTANT
         num++;
@@ -886,7 +765,7 @@
         let currentModal = "";
         currentModal +=
             <!-- Modal -->
-            `<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+            `<div class="modal fade roboto" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -937,37 +816,37 @@
         num++;
     };
 
+    function showQuestions() {
+        num = 0;
+        document.getElementById("questionButtons").innerHTML += "<div class='question-row' id='row-1'></div>";
+        selectedGenre.row1.forEach(function (item) {
+            makeCard(item, 1)
+        });
+        num = 0;
+        document.getElementById("questionButtons").innerHTML += "<div class='question-row' id='row-2'></div>";
+        selectedGenre.row2.forEach(function (item) {
+            makeCard(item, 2)
+        });
+        num = 0;
+        document.getElementById("questionButtons").innerHTML += "<div class='question-row' id='row-3'></div>";
+        selectedGenre.row3.forEach(function (item) {
+            makeCard(item, 3)
+        });
+        num = 0;
+        document.getElementById("questionButtons").innerHTML += "<div class='question-row' id='row-4'></div>";
+        selectedGenre.row4.forEach(function (item) {
+            makeCard(item, 4)
+        });
+        num = 0;
+        document.getElementById("questionButtons").innerHTML += "<div class='question-row' id='row-5'></div>";
+        selectedGenre.row5.forEach(function (item) {
+            makeCard(item, 5)
+        });
+    }
 
-    // ${selectedQuestion.choices[0]}
-    // ${selectedQuestion.choices[1]}
-    // ${selectedQuestion.choices[2]}
-    // ${selectedQuestion.choices[3]}
+    showQuestions();
 
-
-    // function showQuestions() {
-    //     num = 0;
-    //     selectedGenre.row1.forEach(function (item) {
-    //         makeCard(item, 1)
-    //     });
-    //     num = 0;
-    //     selectedGenre.row2.forEach(function (item) {
-    //         makeCard(item, 2)
-    //     });
-    //     num = 0;
-    //     selectedGenre.row3.forEach(function (item) {
-    //         makeCard(item, 3)
-    //     });
-    //     num = 0;
-    //     selectedGenre.row4.forEach(function (item) {
-    //         makeCard(item, 4)
-    //     });
-    //     num = 0;
-    //     selectedGenre.row5.forEach(function (item) {
-    //         makeCard(item, 5)
-    //     });
-    // }
-
-    // showQuestions();
 </script>
 </body>
 </html>
+

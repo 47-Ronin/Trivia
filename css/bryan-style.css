@@ -95,10 +95,10 @@ hr {
 
 
 /*question button styling*/
-.col {
+.question-card {
     height: 60px;
     line-height: 60px;
-    width: 25px;
+    width: 50px;
     background-color: darkred;
     opacity: .9;
     border: 2px solid black;
@@ -108,14 +108,23 @@ hr {
     color: white;
     font-size: 2rem;
     font-weight: bold;
-
 }
 
-.col:hover {
+.question-card:hover {
     color: darkred;
     background-color: white;
 }
 
+#questionButtons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.question-row{
+    display: flex;
+    justify-content: space-between;
+}
 
 /*MODAL STYLING*/
 
