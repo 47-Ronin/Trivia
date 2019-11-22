@@ -739,11 +739,13 @@
             <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#${row}-${item.number}">
              ${item.value}</div></div>`;
         document.getElementById(`row-${row}`).innerHTML += content;
-        console.log(document.getElementById(`card-${uniqueID}`));
 
-        document.getElementById(`card-${uniqueID}`).addEventListener("click", function () {
-            console.log("hello");
-        });
+        console.log(document.getElementById(`card-${uniqueID}`));
+        document.getElementById(`card-${uniqueID}`).classList.add("test");
+        // document.getElementById(`card-${uniqueID}`).addEventListener("click", function () {
+        //     console.log("WORKING");
+        // });
+
 
         //document.getElementById(`card-${uniqueID}`).addEventListener("click", function () {
         // $(`#card-${uniqueID}`).click(function () {
@@ -820,8 +822,15 @@
         num = 0;
         document.getElementById("questionButtons").innerHTML += "<div class='question-row' id='row-1'></div>";
         selectedGenre.row1.forEach(function (item) {
-            makeCard(item, 1)
+            makeCard(item, 1);
         });
+        for (let it = 1; it <= 5; it++){
+            document.getElementById(`card-1-${it}`).addEventListener("click", () => {
+                gameplay.selectQuestion("row1", it);
+                //console.log("TEST: " + `card-1-${it}`);
+            });
+        }
+
         num = 0;
         document.getElementById("questionButtons").innerHTML += "<div class='question-row' id='row-2'></div>";
         selectedGenre.row2.forEach(function (item) {
