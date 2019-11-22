@@ -40,9 +40,9 @@
 <!--modal-->
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-secondary fixed-top" data-toggle="modal" data-target="#exampleModal">
-    Launch modal
-</button>
+<!--<button type="button" class="btn btn-secondary fixed-top" data-toggle="modal" data-target="#exampleModal">-->
+<!--    Launch modal-->
+<!--</button>-->
 
 <!-- Modal Holder -->
 <div id="modalHolder">
@@ -736,7 +736,7 @@
         let content = "";
         content += `
             <div class="question-card" id='card-${uniqueID}'>
-            <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#${row}-${item.number}">
+            <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#exampleModal">
              ${item.value}</div></div>`;
         document.getElementById(`row-${row}`).innerHTML += content;
 
