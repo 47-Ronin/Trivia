@@ -784,7 +784,7 @@
         },
         selectQuestion: function (row, index) {
             const uniqueID = `${row}-${index}`;
-            console.log(`${row}-${index}`)
+            console.log(`${row}-${index}`);
             if (selectedGenre[row][index].available) {
                 selectedQuestion = selectedGenre[row][index];
                 selectedGenre[row][index].available = false;
@@ -836,46 +836,48 @@
 
     let num = 0;
 
-    // function makeCard(item, row) {
-    //     const uniqueID = `${row}-${num}`;
-    //     //NOT IMPORTANT
-    //     // cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
-    //
-    //     let content = "";
-    //     content += `<div class="card text-white  mb-3" style="max-width: 18rem;">`;
-    //     content += `<div class="card-header bg-success">Question No.${item.number}</div>`;
-    //     content += `<div class="card-body">`;
-    //     content += `<h5 class="card-title">${item.q}</h5>`;
-    //     content += `<p class="card-text">
-    //                 <!--answer 1---------------------------------------------->
-    //                 <div class="custom-control custom-radio">
-    //                     <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
-    //                     <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
-    //                 </div>
-    //                 <!--answer 2---------------------------------------------->
-    //                 <div class="custom-control custom-radio">
-    //                     <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
-    //                     <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
-    //                 </div>`;
-    //     if (item.choices.length > 2) {
-    //         content += `
-    //                 <!--answer 3 --------------------------------------------->
-    //                 <div class="custom-control custom-radio">
-    //                     <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
-    //                     <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
-    //                 </div>
-    //                 <!--answer 4---------------------------------------------->
-    //                 <div class="custom-control custom-radio">
-    //                     <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
-    //                     <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
-    //                 </div> </p>`;
-    //     }
-    //     content += `</div>`;
-    //     $("#cards").append(content);
-    //
-    //     //IMPORTANT
-    //     num++;
-    // }
+    function makeCard(item, row) {
+        const uniqueID = `${row}-${num}`;
+        //NOT IMPORTANT
+        // cards.innerHTML += `<div class='card' id="${uniqueID}"><p>Question No.${item.number}</p></div>`;
+
+        let content = "";
+        content += `<div class="card text-white  mb-3" style="max-width: 18rem;">`;
+        content += `<div class="card-header bg-success">Question No.${item.number}</div>`;
+        content += `<div class="card-body">`;
+        content += `<h5 class="card-title">${item.q}</h5>`;
+        content += `<p class="card-text">
+                    <!--answer 1---------------------------------------------->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
+                    </div>
+                    <!--answer 2---------------------------------------------->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
+                    </div>`;
+        if (item.choices.length > 2) {
+            content += `
+                    <!--answer 3 --------------------------------------------->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
+                    </div>
+                    <!--answer 4---------------------------------------------->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
+                    </div> </p>`;
+        }
+        content += `</div>`;
+        $("#cards").append(content);
+
+        document.getElementById("");
+
+        //IMPORTANT
+        num++;
+    }
 
 
     function makeModal(item, row) {
