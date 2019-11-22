@@ -697,7 +697,7 @@
         selectQuestion: function (row, index) {
             const uniqueID = `${row}-${index}`;
             console.log(`${row}-${index}`);
-            if (selectedGenre[row][index].available) {
+            // if (selectedGenre[row][index].available) {
                 selectedQuestion = selectedGenre[row][index];
                 selectedGenre[row][index].available = false;
 
@@ -709,11 +709,11 @@
 
                 console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
                 selectedQuestion = {};
-            } else {
-                //If question is NOT available
-                selectedQuestion = {};
-                console.log("Unavailable");
-            }
+            // } else {
+            //     //If question is NOT available
+            //     selectedQuestion = {};
+            //     console.log("Unavailable");
+            // }
         }
     };
 
