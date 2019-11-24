@@ -657,7 +657,7 @@
     };
 
 
-    let selectedGenre = programming;
+    let selectedGenre = nerdy;
 
     let answeredQuestions = [];
     let selectedQuestion = {};
@@ -680,7 +680,8 @@
             }
         },
         answerQuestion: function (response) {
-            question.style.display = "none";
+            //WHAT DOES THE LINE BELOW DO?
+            // question.style.display = "none";
             if (selectedQuestion.answer === response) {
                 this[this.turn].score += selectedQuestion.value;
                 if (this[this.turn].score >= this.scoreLimit) {
@@ -722,7 +723,7 @@
     let gameplay;
 
     function init() {
-        selectedGenre = programming;
+        selectedGenre = nerdy;
         answeredQuestions = [];
         selectedQuestion = {};
         gameplay = gameplayD;
@@ -879,17 +880,20 @@
     //gets value of selected radio button
     function getVal() {
         let radioVal = $('input[name="customRadio"]:checked').val();
-        console.log(radioVal);
-        return radioVal;
+        let radioString = "" + radioVal + "";
+        console.log(radioString);
+        return radioString;
     }
 
     //ties function into submit button
     $('#modalHolder').on('click', '#submitButton', function() {
         console.log("submit button clicked");
-        getVal();
+        // gameplay.answerQuestion(getVal());
+        gameplayD.answerQuestion(getVal());
+        // getVal();
     });
 
-
+// ATTEMPTING TO PASS THE VALUE THROUGH THE ANSWER QUESTIONS FUNCTION ON PRESS^^^
 
 
     showQuestions();
