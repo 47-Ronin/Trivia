@@ -680,8 +680,15 @@
             }
         },
         answerQuestion: function (response) {
+
+
             //WHAT DOES THE LINE BELOW DO?
             // question.style.display = "none";
+
+            //console log below comes back undefined?
+            console.log(selectedQuestion.answer);
+
+
             if (selectedQuestion.answer === response) {
                 this[this.turn].score += selectedQuestion.value;
                 if (this[this.turn].score >= this.scoreLimit) {
@@ -889,7 +896,7 @@
     $('#modalHolder').on('click', '#submitButton', function() {
         console.log("submit button clicked");
         // gameplay.answerQuestion(getVal());
-        gameplayD.answerQuestion(getVal());
+        gameplay.answerQuestion(getVal());
         // getVal();
     });
 
