@@ -681,13 +681,8 @@
         },
         answerQuestion: function (response) {
 
-
-            //WHAT DOES THE LINE BELOW DO?
-            // question.style.display = "none";
-
             //console log below comes back undefined?
             console.log(selectedQuestion.answer);
-
 
             if (selectedQuestion.answer === response) {
                 this[this.turn].score += selectedQuestion.value;
@@ -698,32 +693,36 @@
                 }
                 this.switchTurn();
                 console.log("Correct!");
+                selectedQuestion = {};
                 return "Correct!";
             } else {
                 console.log("Incorrect!");
+                selectedQuestion = {};
                 return "Incorrect!";
             }
         },
         selectQuestion: function (row, index) {
+
             const uniqueID = `${row}-${index}`;
-            console.log(`${row}-${index}`);
-            // if (selectedGenre[row][index].available) {
-            selectedQuestion = selectedGenre[row][index];
-            selectedGenre[row][index].available = false;
+            if (selectedGenre[row][index].available === true) {
 
-            //REPLACE WITH MODAL
+                console.log("BEFORE: " + selectedGenre[row][index].available);
 
-            makeModal(selectedQuestion, row);
-            // question.style.display = "flex";
+                selectedQuestion = selectedGenre[row][index];
 
+                makeModal(selectedGenre[row][index], row);
 
-            console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
-            selectedQuestion = {};
-            // } else {
-            //     //If question is NOT available
-            //     selectedQuestion = {};
-            //     console.log("Unavailable");
-            // }
+                selectedGenre[row][index].available = false;
+                selectedQuestion.available = false;
+                // console.log(selectedGenre[row][index]);
+                // console.log(selectedQuestion);
+
+            } else {
+                //If question is NOT available
+                // selectedQuestion = {};
+                console.log("AFTER: " + selectedGenre[row][index].available);
+                console.log("Unavailable");
+            }
         }
     };
 
@@ -749,39 +748,25 @@
             <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#exampleModal">
              ${item.value}</div></div>`;
         document.getElementById(`row-${row}`).innerHTML += content;
-
-        // console.log(document.getElementById(`card-${uniqueID}`));
         document.getElementById(`card-${uniqueID}`).classList.add("test");
-        // document.getElementById(`card-${uniqueID}`).addEventListener("click", function () {
-        //     console.log("WORKING");
-        // });
-
-
-        //document.getElementById(`card-${uniqueID}`).addEventListener("click", function () {
-        // $(`#card-${uniqueID}`).click(function () {
-        //     console.log("success");
-        //     gameplay.selectQuestion(`row-${row}`, num);
-        // });
-
-        // console.log(`row-${row}, num`);
-        // });
-
         //IMPORTANT
         num++;
     }
 
 
     function makeModal(item, row) {
-        const uniqueID = `${row}-${num}`;
+        console.log("check from modal: " + item.available);
+        if (item.available) {
+            const uniqueID = `${row}-${num}`;
 
-        let currentModal = "";
-        currentModal +=
-            <!-- Modal -->
-            `<div class="modal fade roboto" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+            let currentModal = "";
+            currentModal +=
+                <!-- Modal -->
+                `<div class="modal fade roboto" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Question No.${selectedQuestion.number}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Question No.${item.number}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -790,31 +775,31 @@
             <div id="questionCard" >
             <!--    the Question ------------------------------------------->
         <div id="questionHolder">
-            <h4>${selectedQuestion.q}</h4>
+            <h4>${item.q}</h4>
             </div>
             <!--answer 1------------------------------------------->
         <div class="custom-control custom-radio">
             <input type="radio" id="A${uniqueID}" name="customRadio" value="A" class="custom-control-input">
-            <label class="custom-control-label" for="A${uniqueID}">${selectedQuestion.choices[0]}</label>
+            <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
             </div>
             <!--answer 2---------------------------------------------->
         <div class="custom-control custom-radio">
             <input type="radio" id="B${uniqueID}" name="customRadio" value="B" class="custom-control-input">
-            <label class="custom-control-label" for="B${uniqueID}">${selectedQuestion.choices[1]}</label>
+            <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
             </div>`;
-        // <!--   answer 3 ------------------------------------------->;
-        if (selectedQuestion.choices.length > 2) {
-            currentModal += `<div class="custom-control custom-radio">
+            // <!--   answer 3 ------------------------------------------->;
+            if (item.choices.length > 2) {
+                currentModal += `<div class="custom-control custom-radio">
             <input type="radio" id="C${uniqueID}" name="customRadio" value="C" class="custom-control-input">
-            <label class="custom-control-label" for="C${uniqueID}">${selectedQuestion.choices[2]}</label>
+            <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
             </div>
             <!--    answer 4------------------------------------------->
             <div class="custom-control custom-radio">
                 <input type="radio" id="D${uniqueID}" name="customRadio" value="D" class="custom-control-input">
-                <label class="custom-control-label" for="D${uniqueID}">${selectedQuestion.choices[3]}</label>
+                <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
             </div>`
-        }
-        currentModal += `</div>
+            }
+            currentModal += `</div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" id="submitButton" data-toggle="modal" data-target="#exampleModal">Submit</button>
@@ -824,8 +809,9 @@
             </div>`;
 
 
-        $("#modalHolder").html(currentModal);
-        num++;
+            $("#modalHolder").html(currentModal);
+            num++;
+        }
     };
 
     function showQuestions() {
@@ -888,20 +874,16 @@
     function getVal() {
         let radioVal = $('input[name="customRadio"]:checked').val();
         let radioString = "" + radioVal + "";
-        console.log(radioString);
         return radioString;
     }
 
     //ties function into submit button
     $('#modalHolder').on('click', '#submitButton', function() {
-        console.log("submit button clicked");
-        // gameplay.answerQuestion(getVal());
         gameplay.answerQuestion(getVal());
-        // getVal();
     });
 
 // ATTEMPTING TO PASS THE VALUE THROUGH THE ANSWER QUESTIONS FUNCTION ON PRESS^^^
-
+//fixed
 
     showQuestions();
 
