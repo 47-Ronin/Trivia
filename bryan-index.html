@@ -689,26 +689,28 @@
                     return "Game Over!"
                 }
                 this.switchTurn();
-                return "Correct!"
+                console.log("Correct!");
+                return "Correct!";
             } else {
-                return "Incorrect!"
+                console.log("Incorrect!");
+                return "Incorrect!";
             }
         },
         selectQuestion: function (row, index) {
             const uniqueID = `${row}-${index}`;
             console.log(`${row}-${index}`);
             // if (selectedGenre[row][index].available) {
-                selectedQuestion = selectedGenre[row][index];
-                selectedGenre[row][index].available = false;
+            selectedQuestion = selectedGenre[row][index];
+            selectedGenre[row][index].available = false;
 
-                //REPLACE WITH MODAL
+            //REPLACE WITH MODAL
 
-                makeModal(selectedQuestion, row);
-                // question.style.display = "flex";
+            makeModal(selectedQuestion, row);
+            // question.style.display = "flex";
 
 
-                console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
-                selectedQuestion = {};
+            console.log("The question is:\n" + selectedQuestion.q + "\n Choices are: \n" + selectedQuestion.choices.join("\n"));
+            selectedQuestion = {};
             // } else {
             //     //If question is NOT available
             //     selectedQuestion = {};
@@ -740,7 +742,7 @@
              ${item.value}</div></div>`;
         document.getElementById(`row-${row}`).innerHTML += content;
 
-        console.log(document.getElementById(`card-${uniqueID}`));
+        // console.log(document.getElementById(`card-${uniqueID}`));
         document.getElementById(`card-${uniqueID}`).classList.add("test");
         // document.getElementById(`card-${uniqueID}`).addEventListener("click", function () {
         //     console.log("WORKING");
@@ -753,7 +755,7 @@
         //     gameplay.selectQuestion(`row-${row}`, num);
         // });
 
-            // console.log(`row-${row}, num`);
+        // console.log(`row-${row}, num`);
         // });
 
         //IMPORTANT
@@ -784,30 +786,30 @@
             </div>
             <!--answer 1------------------------------------------->
         <div class="custom-control custom-radio">
-            <input type="radio" id="A${uniqueID}" name="customRadio" class="custom-control-input">
+            <input type="radio" id="A${uniqueID}" name="customRadio" value="A" class="custom-control-input">
             <label class="custom-control-label" for="A${uniqueID}">${selectedQuestion.choices[0]}</label>
             </div>
             <!--answer 2---------------------------------------------->
         <div class="custom-control custom-radio">
-            <input type="radio" id="B${uniqueID}" name="customRadio" class="custom-control-input">
+            <input type="radio" id="B${uniqueID}" name="customRadio" value="B" class="custom-control-input">
             <label class="custom-control-label" for="B${uniqueID}">${selectedQuestion.choices[1]}</label>
             </div>`;
         // <!--   answer 3 ------------------------------------------->;
         if (selectedQuestion.choices.length > 2) {
             currentModal += `<div class="custom-control custom-radio">
-            <input type="radio" id="C${uniqueID}" name="customRadio" class="custom-control-input">
+            <input type="radio" id="C${uniqueID}" name="customRadio" value="C" class="custom-control-input">
             <label class="custom-control-label" for="C${uniqueID}">${selectedQuestion.choices[2]}</label>
             </div>
             <!--    answer 4------------------------------------------->
             <div class="custom-control custom-radio">
-                <input type="radio" id="D${uniqueID}" name="customRadio" class="custom-control-input">
+                <input type="radio" id="D${uniqueID}" name="customRadio" value="D" class="custom-control-input">
                 <label class="custom-control-label" for="D${uniqueID}">${selectedQuestion.choices[3]}</label>
             </div>`
         }
         currentModal += `</div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary">Submit</button>
+            <button type="button" class="btn btn-secondary" id="submitButton" data-toggle="modal" data-target="#exampleModal">Submit</button>
             </div>
             </div>
             </div>
@@ -846,32 +848,49 @@
             makeCard(item, 5)
         });
 
-        for (let it = 1; it <= 5; it++){
+        for (let it = 1; it <= 5; it++) {
             document.getElementById(`card-1-${it}`).addEventListener("click", () => {
                 gameplay.selectQuestion("row1", it - 1);
             });
         }
-        for (let it = 1; it <= 5; it++){
+        for (let it = 1; it <= 5; it++) {
             document.getElementById(`card-2-${it}`).addEventListener("click", () => {
                 gameplay.selectQuestion("row2", it - 1);
             });
         }
-        for (let it = 1; it <= 5; it++){
+        for (let it = 1; it <= 5; it++) {
             document.getElementById(`card-3-${it}`).addEventListener("click", () => {
                 gameplay.selectQuestion("row3", it - 1);
             });
         }
-        for (let it = 1; it <= 5; it++){
+        for (let it = 1; it <= 5; it++) {
             document.getElementById(`card-4-${it}`).addEventListener("click", () => {
                 gameplay.selectQuestion("row4", it - 1);
             });
         }
-        for (let it = 1; it <= 5; it++){
+        for (let it = 1; it <= 5; it++) {
             document.getElementById(`card-5-${it}`).addEventListener("click", () => {
                 gameplay.selectQuestion("row5", it - 1);
             });
         }
     }
+
+
+    //gets value of selected radio button
+    function getVal() {
+        let radioVal = $('input[name="customRadio"]:checked').val();
+        console.log(radioVal);
+        return radioVal;
+    }
+
+    //ties function into submit button
+    $('#modalHolder').on('click', '#submitButton', function() {
+        console.log("submit button clicked");
+        getVal();
+    });
+
+
+
 
     showQuestions();
 
