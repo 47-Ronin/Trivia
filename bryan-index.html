@@ -687,17 +687,20 @@
             if (selectedQuestion.answer === response) {
                 this[this.turn].score += selectedQuestion.value;
                 if (this[this.turn].score >= this.scoreLimit) {
-                    console.log("Working");
+                    document.getElementById("centerDivHolder").innerText = `${this.turn} Wins!`;
                     alert(this.turn + " wins!!!");
+                    this.updateScore();
                     return "Game Over!"
                 }
                 this.switchTurn();
                 console.log("Correct!");
                 selectedQuestion = {};
+                this.updateScore();
                 return "Correct!";
             } else {
                 console.log("Incorrect!");
                 selectedQuestion = {};
+                this.updateScore();
                 return "Incorrect!";
             }
         },
@@ -723,6 +726,23 @@
                 console.log("AFTER: " + selectedGenre[row][index].available);
                 console.log("Unavailable");
             }
+        },
+        updateScore: function () {
+            document.getElementById("team1Score").innerHTML = this.team1.score;
+            document.getElementById("team2Score").innerHTML = this.team2.score;
+            if (this.team1.score > this.team2.score){
+                document.getElementById("centerHolderDiv").innerHTML = "Team 1 leads!";
+                if (this.team1.score > this.team2.score + 700){
+                    document.getElementById("centerHolderDiv").innerHTML = "Team 1 has a massive lead!";
+                }
+            } else if (this.team2.score > this.team1.score){
+                document.getElementById("centerHolderDiv").innerHTML = "Team 2 leads!";
+                if (this.team2.score > this.team1.score + 700){
+                    document.getElementById("centerHolderDiv").innerHTML = "Team 2 has a massive lead!";
+                }
+            } else if (this.team1.score === this.team2.score){
+                document.getElementById("centerHolderDiv").innerHTML = "Game is tied!";
+            }
         }
     };
 
@@ -744,7 +764,9 @@
 
         let content = "";
         content += `
-            <div class="question-card" id='card-${uniqueID}'>
+            <div class="question-card" id='card-${uniqueID}' onclick="function clicked(n) {
+
+            }">
             <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#exampleModal">
              ${item.value}</div></div>`;
         document.getElementById(`row-${row}`).innerHTML += content;
@@ -844,7 +866,9 @@
 
         for (let it = 1; it <= 5; it++) {
             document.getElementById(`card-1-${it}`).addEventListener("click", () => {
-                gameplay.selectQuestion("row1", it - 1);
+                if (selectedGenre.row1[it - 1].available) {
+                    gameplay.selectQuestion("row1", it - 1);
+                }
             });
         }
         for (let it = 1; it <= 5; it++) {
@@ -886,8 +910,8 @@
 //fixed
 
     showQuestions();
+    gameplay.updateScore();
 
 </script>
 </body>
 </html>
-
