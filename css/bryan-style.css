@@ -110,16 +110,18 @@ hr {
     font-weight: bold;
 }
 
+.question-card:visited {
+    background-color: black;
+    color: gray;
+
+}
+
 .question-card:hover {
     color: darkred;
     background-color: white;
 }
 
-.question-card:after {
-    background-color: black;
-    color: gray;
 
-}
 
 #questionButtons {
     display: flex;

@@ -14,6 +14,20 @@
 <h1 id="header" class="sacramento glow center pt-5">Deimos Trivia</h1>
 <hr class="glow">
 
+<!--Category dropdown selector-->
+<div class="dropdown">
+    <button class="btn btn-dark dropdown-toggle fixed-top" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       Categories
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" value="nerdy" href="#">Nerdy</a>
+        <a class="dropdown-item" value="programming" href="#">Programming</a>
+        <a class="dropdown-item" value="starWars" href="#">Star Wars</a>
+    </div>
+</div>
+
+
+
 <!--question cards/buttons-->
 <div id="questionButtons">
 
@@ -687,27 +701,30 @@
             if (selectedQuestion.answer === response) {
                 this[this.turn].score += selectedQuestion.value;
                 if (this[this.turn].score >= this.scoreLimit) {
-                    document.getElementById("centerDivHolder").innerText = `${this.turn} Wins!`;
+                    $("#centerDivHolder").html(`${this.turn} Wins!`);
+                    // document.getElementById("centerDivHolder").innerText = `${this.turn} Wins!`;
                     alert(this.turn + " wins!!!");
                     this.updateScore();
                     return "Game Over!"
                 }
                 this.switchTurn();
-                console.log("Correct!");
+                console.log("Corect!");
                 selectedQuestion = {};
                 this.updateScore();
+                alert(`Correct!`);
                 return "Correct!";
             } else {
                 console.log("Incorrect!");
                 selectedQuestion = {};
                 this.updateScore();
+                alert(`Wrong!`)
                 return "Incorrect!";
             }
         },
         selectQuestion: function (row, index) {
 
             const uniqueID = `${row}-${index}`;
-            if (selectedGenre[row][index].available === true) {
+            if (selectedGenre[row][index].available == true) {
 
                 console.log("BEFORE: " + selectedGenre[row][index].available);
 
@@ -730,17 +747,17 @@
         updateScore: function () {
             document.getElementById("team1Score").innerHTML = this.team1.score;
             document.getElementById("team2Score").innerHTML = this.team2.score;
-            if (this.team1.score > this.team2.score){
+            if (this.team1.score > this.team2.score) {
                 document.getElementById("centerHolderDiv").innerHTML = "Team 1 leads!";
-                if (this.team1.score > this.team2.score + 700){
+                if (this.team1.score > this.team2.score + 700) {
                     document.getElementById("centerHolderDiv").innerHTML = "Team 1 has a massive lead!";
                 }
-            } else if (this.team2.score > this.team1.score){
+            } else if (this.team2.score > this.team1.score) {
                 document.getElementById("centerHolderDiv").innerHTML = "Team 2 leads!";
-                if (this.team2.score > this.team1.score + 700){
+                if (this.team2.score > this.team1.score + 700) {
                     document.getElementById("centerHolderDiv").innerHTML = "Team 2 has a massive lead!";
                 }
-            } else if (this.team1.score === this.team2.score){
+            } else if (this.team1.score === this.team2.score) {
                 document.getElementById("centerHolderDiv").innerHTML = "Game is tied!";
             }
         }
@@ -759,26 +776,27 @@
 
     let num = 0;
 
+
     function makeCard(item, row) {
         const uniqueID = `${row}-${item.number}`;
 
         let content = "";
         content += `
-            <div class="question-card" id='card-${uniqueID}' onclick="function clicked(n) {
-
-            }">
-            <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#exampleModal">
+            <div class="question-card" id='card-${uniqueID}' onclick="">
+            <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#exampleModal" onclick="">
              ${item.value}</div></div>`;
         document.getElementById(`row-${row}`).innerHTML += content;
         document.getElementById(`card-${uniqueID}`).classList.add("test");
         //IMPORTANT
         num++;
+
     }
+
 
 
     function makeModal(item, row) {
         console.log("check from modal: " + item.available);
-        if (item.available) {
+        if (item.available == true) {
             const uniqueID = `${row}-${num}`;
 
             let currentModal = "";
@@ -815,7 +833,7 @@
             <input type="radio" id="C${uniqueID}" name="customRadio" value="C" class="custom-control-input">
             <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
             </div>
-            <!--    answer 4------------------------------------------->
+           <!--    answer 4------------------------------------------->
             <div class="custom-control custom-radio">
                 <input type="radio" id="D${uniqueID}" name="customRadio" value="D" class="custom-control-input">
                 <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
@@ -836,7 +854,11 @@
         }
     };
 
+
+
+
     function showQuestions() {
+        document.getElementById("questionButtons").innerHTML = "";
         num = 0;
         document.getElementById("questionButtons").innerHTML += "<div class='question-row' id='row-1'></div>";
         selectedGenre.row1.forEach(function (item) {
@@ -894,6 +916,19 @@
     }
 
 
+    // *********************************************
+    // ||             Bryan Functions             ||
+    // *********************************************
+
+
+    //HIDES QUESTION-CARD AFTER IT IS SELECTED ONE TIME
+    $( document ).ready(function() {
+        $( ".question-card" ).click(function() {
+            $( this ).fadeOut();
+        });
+    });
+
+
     //gets value of selected radio button
     function getVal() {
         let radioVal = $('input[name="customRadio"]:checked').val();
@@ -902,12 +937,11 @@
     }
 
     //ties function into submit button
-    $('#modalHolder').on('click', '#submitButton', function() {
+    $('#modalHolder').on('click', '#submitButton', function () {
         gameplay.answerQuestion(getVal());
     });
 
-// ATTEMPTING TO PASS THE VALUE THROUGH THE ANSWER QUESTIONS FUNCTION ON PRESS^^^
-//fixed
+
 
     showQuestions();
     gameplay.updateScore();
