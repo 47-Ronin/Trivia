@@ -680,9 +680,9 @@
             }
         },
         answerQuestion: function (response) {
+            // showQuestions();
 
-            //console log below comes back undefined?
-            console.log(selectedQuestion.answer);
+            // console.log(selectedQuestion.answer);
 
             if (selectedQuestion.answer === response) {
                 this[this.turn].score += selectedQuestion.value;
@@ -693,12 +693,12 @@
                     return "Game Over!"
                 }
                 this.switchTurn();
-                console.log("Correct!");
+                // console.log("Correct!");
                 selectedQuestion = {};
                 this.updateScore();
                 return "Correct!";
             } else {
-                console.log("Incorrect!");
+                // console.log("Incorrect!");
                 selectedQuestion = {};
                 this.updateScore();
                 return "Incorrect!";
@@ -707,6 +707,9 @@
         selectQuestion: function (row, index) {
 
             const uniqueID = `${row}-${index}`;
+
+            document.getElementById("modalHolder").innerHTML = "";
+
             if (selectedGenre[row][index].available === true) {
 
                 console.log("BEFORE: " + selectedGenre[row][index].available);
@@ -717,10 +720,12 @@
 
                 selectedGenre[row][index].available = false;
                 selectedQuestion.available = false;
+                showQuestions();
                 // console.log(selectedGenre[row][index]);
                 // console.log(selectedQuestion);
 
             } else {
+                $("#modalHolder").modal("dispose");
                 //If question is NOT available
                 // selectedQuestion = {};
                 console.log("AFTER: " + selectedGenre[row][index].available);
@@ -764,9 +769,7 @@
 
         let content = "";
         content += `
-            <div class="question-card" id='card-${uniqueID}' onclick="function clicked(n) {
-
-            }">
+            <div class="question-card" id='card-${uniqueID}'>
             <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#exampleModal">
              ${item.value}</div></div>`;
         document.getElementById(`row-${row}`).innerHTML += content;
@@ -777,8 +780,9 @@
 
 
     function makeModal(item, row) {
-        console.log("check from modal: " + item.available);
-        if (item.available) {
+
+        if (item.available === true) {
+            console.log("check from modal: " + item.available);
             const uniqueID = `${row}-${num}`;
 
             let currentModal = "";
@@ -789,9 +793,6 @@
         <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Question No.${item.number}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
         </div>
         <div class="modal-body">
             <div id="questionCard" >
@@ -837,6 +838,7 @@
     };
 
     function showQuestions() {
+        document.getElementById("questionButtons").innerHTML = "";
         num = 0;
         document.getElementById("questionButtons").innerHTML += "<div class='question-row' id='row-1'></div>";
         selectedGenre.row1.forEach(function (item) {
@@ -865,11 +867,11 @@
         });
 
         for (let it = 1; it <= 5; it++) {
-            document.getElementById(`card-1-${it}`).addEventListener("click", () => {
-                if (selectedGenre.row1[it - 1].available) {
+            if (selectedGenre.row1[it - 1].available) {
+                document.getElementById(`card-1-${it}`).addEventListener("click", () => {
                     gameplay.selectQuestion("row1", it - 1);
-                }
-            });
+                });
+            }
         }
         for (let it = 1; it <= 5; it++) {
             document.getElementById(`card-2-${it}`).addEventListener("click", () => {
@@ -903,6 +905,7 @@
 
     //ties function into submit button
     $('#modalHolder').on('click', '#submitButton', function() {
+
         gameplay.answerQuestion(getVal());
     });
 
