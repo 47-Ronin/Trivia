@@ -926,10 +926,16 @@
     //HIDES QUESTION-CARD AFTER IT IS SELECTED ONE TIME
     $(document).ready(function () {
 
-
         $('#questionButtons').on('click', '.question-card', function () {
             // $(".question-card").click(function () {
-            $(this).fadeOut();
+
+            // $(this).fadeOut();
+
+            // $(this).css('opacity','0');
+
+            $(this).css('visibility','hidden');
+
+
             startTimer();
         });
 
@@ -945,6 +951,7 @@
         $('#modalHolder').on('click', '#submitButton', function () {
             gameplay.answerQuestion(getVal());
             $("#countdownHolder").fadeOut();
+            clearTimeout(timer)
         });
 
 
@@ -971,8 +978,7 @@
                     $("#countdownHolder").fadeOut();
                     $("#submitButton").prop("disabled", true);
                     console.log("ready for next question");
-                }
-                ;
+                };
             }, 1000);
 
         };
