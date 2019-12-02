@@ -152,8 +152,15 @@ hr {
 
 .modal-content {
     background-color: darkred;
+    font-size: 1.5rem;
     border: 5px solid white;
 
 }
 .question-buttons {
+}
+
+#countdownHolder {
+    margin-left:90%!important;
+    color: white;
+    font-size: 5em;
 }
