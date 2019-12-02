@@ -811,8 +811,8 @@
         <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Question No.${item.number}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--            <span aria-hidden="true">&times;</span>-->
         </button>
         </div>
         <div class="modal-body">
@@ -947,26 +947,19 @@
             return radioString;
         }
 
-        //ties function into submit button
-        $('#modalHolder').on('click', '#submitButton', function () {
-            gameplay.answerQuestion(getVal());
-            $("#countdownHolder").fadeOut();
-            clearTimeout(timer)
-        });
+        // //ties function into submit button
+        // $('#modalHolder').on('click', '#submitButton', function () {
+        //     gameplay.answerQuestion(getVal());
+        //     $("#countdownHolder").fadeOut();
+        //     clearTimeout(timer);
+        // });
 
 
-        // function selectCategory() {
-        //     $('#categoryDropdown').change( function () {
-        //         console.log("chaged cat");
-        //     });
-        // }
 
 
         //runs timer in top left corner and disables submit button after time has elapsed
-        //IMPORTANT
-        // must allow for full timer to elapse before selecting another question or else will have multiple timers running
         function startTimer() {
-            let timeleft = 10;
+            let timeleft = 30;
             $("#submitButton").prop("disabled", false);
             $("#countdownHolder").fadeIn();
             $("#countdownTimer").text(timeleft);
@@ -978,14 +971,22 @@
                     $("#countdownHolder").fadeOut();
                     $("#submitButton").prop("disabled", true);
                     console.log("ready for next question");
+
                 };
             }, 1000);
+
+            //ties function into submit button
+            $('#modalHolder').on('click', '#submitButton', function () {
+                gameplay.answerQuestion(getVal());
+                $("#countdownHolder").fadeOut();
+                clearTimeout(timer);
+            });
+
 
         };
 
 
         //CHANGES PAGE CHARACTERISTICS BASED ON SELECTED GENRE
-
 
         $('#selectNerdy').on('click', function () {
             selectedGenre = nerdy;
