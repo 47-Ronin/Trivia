@@ -714,15 +714,15 @@
                 }
                 this.switchTurn();
                 console.log("Correct!");
-                selectedQuestion = {};
                 this.updateScore();
+                selectedQuestion = {};
                 alert(`Correct!`);
                 return "Correct!";
             } else {
                 console.log("Incorrect!");
-                selectedQuestion = {};
                 this.updateScore();
-                alert(`Wrong!`)
+                selectedQuestion = {};
+                alert(`Wrong!`);
                 return "Incorrect!";
             }
         },
