@@ -701,13 +701,12 @@
         answerQuestion: function (response) {
 
             //console log below comes back undefined?
-            console.log(selectedQuestion.answer);
+            // console.log(selectedQuestion.answer);
 
             if (selectedQuestion.answer === response) {
                 this[this.turn].score += selectedQuestion.value;
                 if (this[this.turn].score >= this.scoreLimit) {
                     $("#centerDivHolder").html(`${this.turn} Wins!`);
-                    // document.getElementById("centerDivHolder").innerText = `${this.turn} Wins!`;
                     alert(this.turn + " wins!!!");
                     this.updateScore();
                     return "Game Over!"
@@ -719,11 +718,14 @@
                 alert(`Correct!`);
                 return "Correct!";
             } else {
-                console.log("Incorrect!");
-                this.updateScore();
-                selectedQuestion = {};
-                alert(`Wrong!`);
-                return "Incorrect!";
+                if (selectedQuestion !== {}) {
+                    console.log(selectedQuestion.answer);
+                    console.log("Incorrect!");
+                    this.updateScore();
+                    selectedQuestion = {};
+                    alert(`Wrong!`);
+                    return "Incorrect!";
+                }
             }
         },
         selectQuestion: function (row, index) {
@@ -800,7 +802,7 @@
 
     function makeModal(item, row) {
         console.log("check from modal: " + item.available);
-        if (item.available == true) {
+        if (item.available === true) {
             const uniqueID = `${row}-${num}`;
 
             let currentModal = "";
@@ -856,7 +858,7 @@
             $("#modalHolder").html(currentModal);
             num++;
         }
-    };
+    }
 
 
     function showQuestions() {
@@ -972,18 +974,21 @@
                     $("#submitButton").prop("disabled", true);
                     console.log("ready for next question");
 
-                };
+                }
             }, 1000);
 
             //ties function into submit button
             $('#modalHolder').on('click', '#submitButton', function () {
-                gameplay.answerQuestion(getVal());
                 $("#countdownHolder").fadeOut();
                 clearTimeout(timer);
             });
+        }
 
-
-        };
+        $('#modalHolder').on('click', '#submitButton', function () {
+        if(selectedQuestion !== {}) {
+        console.log("answring question");
+        gameplay.answerQuestion(getVal());
+    }});
 
 
         //CHANGES PAGE CHARACTERISTICS BASED ON SELECTED GENRE
