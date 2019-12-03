@@ -681,7 +681,7 @@
     let answeredQuestions = [];
     let selectedQuestion = {};
     const gameplayD = {
-        scoreLimit: 1500,
+        scoreLimit: Infinity,
         team1: {
             name: "",
             score: 0
@@ -709,29 +709,24 @@
                     $("#centerDivHolder").html(`${this.turn} Wins!`);
                     alert(this.turn + " wins!!!");
                     this.updateScore();
-                    return "Game Over!"
+                    return "";
                 }
                 this.switchTurn();
                 console.log("Correct!");
-                this.updateScore();
-                selectedQuestion = {};
-                alert(`Correct!`);
-                return "Correct!";
             } else {
                 if (selectedQuestion !== {}) {
                     console.log(selectedQuestion.answer);
                     console.log("Incorrect!");
-                    this.updateScore();
-                    selectedQuestion = {};
-                    alert(`Wrong!`);
-                    return "Incorrect!";
                 }
             }
+            this.updateScore();
+            selectedQuestion = {};
+            alert(`Wrong!`);
         },
         selectQuestion: function (row, index) {
 
             const uniqueID = `${row}-${index}`;
-            if (selectedGenre[row][index].available == true) {
+            if (selectedGenre[row][index].available === true) {
 
                 console.log("BEFORE: " + selectedGenre[row][index].available);
 
@@ -976,7 +971,6 @@
 
                 }
             }, 1000);
-
             //ties function into submit button
             $('#modalHolder').on('click', '#submitButton', function () {
                 $("#countdownHolder").fadeOut();
