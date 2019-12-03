@@ -14,6 +14,26 @@
 <h1 id="header" class="sacramento glow center pt-5">Deimos Trivia</h1>
 <hr class="glow">
 
+<!--Category dropdown selector-->
+<div class="dropdown">
+    <button class="btn btn-dark dropdown-toggle fixed-top" type="button" id="categoryDropdown" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+        Categories
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" id="selectNerdy" value="1" href="#">Nerdy</a>
+        <a class="dropdown-item" id="selectProgramming" value="2" href="#">Programming</a>
+        <a class="dropdown-item" id="selectStarWars" value="3" href="#">Star Wars</a>
+    </div>
+</div>
+
+
+<!--HOLDS countdown timeer-->
+<div id="countdownHolder" class="float-right fixed-top mr-0">
+    <div id="countdownTimer"></div>
+</div>
+
+
 <!--question cards/buttons-->
 <div id="questionButtons">
 
@@ -306,7 +326,7 @@
             "number": 4,
             "q": "A function within an object is called a...?",
             "choices": ["<em class='option-letter'>A</em> Function", "<em class='option-letter'>B</em> Property", "<em class='option-letter'>C</em> IIF", "<em class='option-letter'>D</em> Method"],
-            "answer": "Option1",
+            "answer": "D",
             "value": 200,
             "available": true
         }, {
@@ -658,11 +678,10 @@
 
 
     let selectedGenre = nerdy;
-
     let answeredQuestions = [];
     let selectedQuestion = {};
     const gameplayD = {
-        scoreLimit: 600,
+        scoreLimit: Infinity,
         team1: {
             name: "",
             score: 0
@@ -680,36 +699,33 @@
             }
         },
         answerQuestion: function (response) {
-            // showQuestions();
 
+            //console log below comes back undefined?
             // console.log(selectedQuestion.answer);
 
             if (selectedQuestion.answer === response) {
                 this[this.turn].score += selectedQuestion.value;
                 if (this[this.turn].score >= this.scoreLimit) {
-                    document.getElementById("centerDivHolder").innerText = `${this.turn} Wins!`;
+                    $("#centerDivHolder").html(`${this.turn} Wins!`);
                     alert(this.turn + " wins!!!");
                     this.updateScore();
-                    return "Game Over!"
+                    return "";
                 }
                 this.switchTurn();
-                // console.log("Correct!");
-                selectedQuestion = {};
-                this.updateScore();
-                return "Correct!";
+                console.log("Correct!");
             } else {
-                // console.log("Incorrect!");
-                selectedQuestion = {};
-                this.updateScore();
-                return "Incorrect!";
+                if (selectedQuestion !== {}) {
+                    console.log(selectedQuestion.answer);
+                    console.log("Incorrect!");
+                }
             }
+            this.updateScore();
+            selectedQuestion = {};
+            alert(`Wrong!`);
         },
         selectQuestion: function (row, index) {
 
             const uniqueID = `${row}-${index}`;
-
-            document.getElementById("modalHolder").innerHTML = "";
-
             if (selectedGenre[row][index].available === true) {
 
                 console.log("BEFORE: " + selectedGenre[row][index].available);
@@ -720,12 +736,10 @@
 
                 selectedGenre[row][index].available = false;
                 selectedQuestion.available = false;
-                showQuestions();
                 // console.log(selectedGenre[row][index]);
                 // console.log(selectedQuestion);
 
             } else {
-                $("#modalHolder").modal("dispose");
                 //If question is NOT available
                 // selectedQuestion = {};
                 console.log("AFTER: " + selectedGenre[row][index].available);
@@ -735,17 +749,17 @@
         updateScore: function () {
             document.getElementById("team1Score").innerHTML = this.team1.score;
             document.getElementById("team2Score").innerHTML = this.team2.score;
-            if (this.team1.score > this.team2.score){
+            if (this.team1.score > this.team2.score) {
                 document.getElementById("centerHolderDiv").innerHTML = "Team 1 leads!";
-                if (this.team1.score > this.team2.score + 700){
+                if (this.team1.score > this.team2.score + 700) {
                     document.getElementById("centerHolderDiv").innerHTML = "Team 1 has a massive lead!";
                 }
-            } else if (this.team2.score > this.team1.score){
+            } else if (this.team2.score > this.team1.score) {
                 document.getElementById("centerHolderDiv").innerHTML = "Team 2 leads!";
-                if (this.team2.score > this.team1.score + 700){
+                if (this.team2.score > this.team1.score + 700) {
                     document.getElementById("centerHolderDiv").innerHTML = "Team 2 has a massive lead!";
                 }
-            } else if (this.team1.score === this.team2.score){
+            } else if (this.team1.score === this.team2.score) {
                 document.getElementById("centerHolderDiv").innerHTML = "Game is tied!";
             }
         }
@@ -754,7 +768,7 @@
     let gameplay;
 
     function init() {
-        selectedGenre = nerdy;
+        // selectedGenre = nerdy;
         answeredQuestions = [];
         selectedQuestion = {};
         gameplay = gameplayD;
@@ -764,25 +778,26 @@
 
     let num = 0;
 
+
     function makeCard(item, row) {
         const uniqueID = `${row}-${item.number}`;
 
         let content = "";
         content += `
-            <div class="question-card" id='card-${uniqueID}'>
-            <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#exampleModal">
+            <div class="question-card" id='card-${uniqueID}' onclick="">
+            <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#exampleModal" onclick="">
              ${item.value}</div></div>`;
         document.getElementById(`row-${row}`).innerHTML += content;
         document.getElementById(`card-${uniqueID}`).classList.add("test");
         //IMPORTANT
         num++;
+
     }
 
 
     function makeModal(item, row) {
-
+        console.log("check from modal: " + item.available);
         if (item.available === true) {
-            console.log("check from modal: " + item.available);
             const uniqueID = `${row}-${num}`;
 
             let currentModal = "";
@@ -793,30 +808,33 @@
         <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Question No.${item.number}</h5>
-        </div>
-        <div class="modal-body">
-            <div id="questionCard" >
-            <!--    the Question ------------------------------------------->
-        <div id="questionHolder">
-            <h4>${item.q}</h4>
-            </div>
-            <!--answer 1------------------------------------------->
-        <div class="custom-control custom-radio">
-            <input type="radio" id="A${uniqueID}" name="customRadio" value="A" class="custom-control-input">
-            <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
-            </div>
-            <!--answer 2---------------------------------------------->
-        <div class="custom-control custom-radio">
-            <input type="radio" id="B${uniqueID}" name="customRadio" value="B" class="custom-control-input">
-            <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
-            </div>`;
-            // <!--   answer 3 ------------------------------------------->;
-            if (item.choices.length > 2) {
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                <!--            <span aria-hidden="true">&times;</span>-->
+                </button>
+                </div>
+                <div class="modal-body">
+                <div id="questionCard" >
+                <!--    the Question ------------------------------------------->
+                <div id="questionHolder">
+                <h4>${item.q}</h4>
+                </div>
+                <!--answer 1------------------------------------------->
+                <div class="custom-control custom-radio">
+                <input type="radio" id="A${uniqueID}" name="customRadio" value="A" class="custom-control-input">
+                <label class="custom-control-label" for="A${uniqueID}">${item.choices[0]}</label>
+                </div>
+                <!--answer 2---------------------------------------------->
+                <div class="custom-control custom-radio">
+                <input type="radio" id="B${uniqueID}" name="customRadio" value="B" class="custom-control-input">
+                <label class="custom-control-label" for="B${uniqueID}">${item.choices[1]}</label>
+                </div>`;
+                    // <!--   answer 3 ------------------------------------------->;
+                if (item.choices.length > 2) {
                 currentModal += `<div class="custom-control custom-radio">
             <input type="radio" id="C${uniqueID}" name="customRadio" value="C" class="custom-control-input">
             <label class="custom-control-label" for="C${uniqueID}">${item.choices[2]}</label>
             </div>
-            <!--    answer 4------------------------------------------->
+           <!--    answer 4------------------------------------------->
             <div class="custom-control custom-radio">
                 <input type="radio" id="D${uniqueID}" name="customRadio" value="D" class="custom-control-input">
                 <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
@@ -832,10 +850,11 @@
             </div>`;
 
 
-            $("#modalHolder").html(currentModal);
-            num++;
+        $("#modalHolder").html(currentModal);
+        num++;
         }
-    };
+    }
+
 
     function showQuestions() {
         document.getElementById("questionButtons").innerHTML = "";
@@ -867,11 +886,11 @@
         });
 
         for (let it = 1; it <= 5; it++) {
-            if (selectedGenre.row1[it - 1].available) {
-                document.getElementById(`card-1-${it}`).addEventListener("click", () => {
+            document.getElementById(`card-1-${it}`).addEventListener("click", () => {
+                if (selectedGenre.row1[it - 1].available) {
                     gameplay.selectQuestion("row1", it - 1);
-                });
-            }
+                }
+            });
         }
         for (let it = 1; it <= 5; it++) {
             document.getElementById(`card-2-${it}`).addEventListener("click", () => {
@@ -896,21 +915,105 @@
     }
 
 
-    //gets value of selected radio button
-    function getVal() {
-        let radioVal = $('input[name="customRadio"]:checked').val();
-        let radioString = "" + radioVal + "";
-        return radioString;
-    }
+    // *********************************************
+    // ||             Bryan Functions             ||
+    // *********************************************
 
-    //ties function into submit button
-    $('#modalHolder').on('click', '#submitButton', function() {
 
-        gameplay.answerQuestion(getVal());
+    //HIDES QUESTION-CARD AFTER IT IS SELECTED ONE TIME
+    $(document).ready(function () {
+
+        $('#questionButtons').on('click', '.question-card', function () {
+            // $(".question-card").click(function () {
+
+            // $(this).fadeOut();
+
+            // $(this).css('opacity','0');
+
+            $(this).css('visibility','hidden');
+
+
+            startTimer();
+        });
+
+
+        //gets value of selected radio button
+        function getVal() {
+            let radioVal = $('input[name="customRadio"]:checked').val();
+            let radioString = "" + radioVal + "";
+            return radioString;
+        }
+
+        // //ties function into submit button
+        // $('#modalHolder').on('click', '#submitButton', function () {
+        //     gameplay.answerQuestion(getVal());
+        //     $("#countdownHolder").fadeOut();
+        //     clearTimeout(timer);
+        // });
+
+
+
+
+        //runs timer in top left corner and disables submit button after time has elapsed
+        function startTimer() {
+            let timeleft = 30;
+            $("#submitButton").prop("disabled", false);
+            $("#countdownHolder").fadeIn();
+            $("#countdownTimer").text(timeleft);
+            let timer = setInterval(function () {
+                timeleft--;
+                $("#countdownTimer").text(timeleft);
+                if (timeleft <= 0) {
+                    clearInterval(timer);
+                    $("#countdownHolder").fadeOut();
+                    $("#submitButton").prop("disabled", true);
+                    console.log("ready for next question");
+
+                }
+            }, 1000);
+            //ties function into submit button
+            $('#modalHolder').on('click', '#submitButton', function () {
+                $("#countdownHolder").fadeOut();
+                clearTimeout(timer);
+            });
+        }
+
+        $('#modalHolder').on('click', '#submitButton', function () {
+            if(selectedQuestion !== {}) {
+                console.log("answring question");
+                gameplay.answerQuestion(getVal());
+            }});
+
+
+        //CHANGES PAGE CHARACTERISTICS BASED ON SELECTED GENRE
+
+        $('#selectNerdy').on('click', function () {
+            selectedGenre = nerdy;
+            $('body').css('background-image', 'url("img/redBlackBG.png")');
+            $('#countdownTimer').css('color', 'white');
+            init();
+            showQuestions();
+        });
+
+
+        $('#selectProgramming').on('click', function () {
+            selectedGenre = programming;
+            $('body').css('background-image', 'url("img/programmingBG.jpg")');
+            $('#countdownTimer').css('color', 'white');
+            init();
+            showQuestions();
+
+        });
+
+        $('#selectStarWars').on('click', function () {
+            selectedGenre = starWars;
+            $('body').css('background-image', 'url("img/starWarsBG.jpg")');
+            $('#countdownTimer').css('color', 'red');
+            init();
+            showQuestions();
+        });
+
     });
-
-    // ATTEMPTING TO PASS THE VALUE THROUGH THE ANSWER QUESTIONS FUNCTION ON PRESS^^^
-    //fixed
 
     showQuestions();
     gameplay.updateScore();
