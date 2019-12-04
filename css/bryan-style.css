@@ -204,20 +204,20 @@ hr {
     justify-content: space-between;
 }
 
-/*MODAL STYLING*/
+MODAL STYLING
 
 .modal {
-    /*background-color: darkred;*/
-    /*border: 5px solid white;*/
-    color: lightgray;
+    background-color: grey;
+    border: 5px solid white;
+    color: black;
 }
 
 .modal-body {
-    background-color: darkred;
+    background-color: grey;
 }
 
 .modal-content {
-    background-color: darkred;
+    background-color: grey;
     font-size: 1.5rem;
     border: 5px solid white;
 
@@ -235,6 +235,8 @@ hr {
 
 
 /*UPDATES to DOM with cat select below*/
+
+/*question cards*/
 .red {
     background-color: darkred;
     color: white;
@@ -287,7 +289,7 @@ hr {
     border-radius: 4px;
 }
 
-
+/*scoreholders at bottom of page*/
 .redLowBox {
     background-color: white;
     width: 200px;
@@ -325,4 +327,50 @@ hr {
     font-weight: bolder;
     line-height: 80px;
 }
+
+/*modals*/
+
+
+.modalRed {
+    color: lightgray;
+}
+
+.modal-bodyRed {
+    background-color: darkred;
+}
+
+.modal-contentRed {
+    background-color: darkred;
+    font-size: 1.5rem;
+    border: 5px solid white;
+}
+
+.modalGreen {
+    color: black;
+}
+
+.modal-bodyGreen {
+    background-color: lime;
+}
+
+.modal-contentGreen {
+    background-color: lime;
+    font-size: 1.5rem;
+    border: 5px solid black;
+}
+
+.modalBlue {
+    color: #BED8F5;
+}
+
+.modal-bodyBlue {
+    background-color: darkblue;
+}
+
+.modal-contentBlue {
+    background-color: darkblue;
+    font-size: 1.5rem;
+    border: 5px solid black;
+}
+
 
