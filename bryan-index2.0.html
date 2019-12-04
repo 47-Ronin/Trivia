@@ -11,7 +11,7 @@
 </head>
 <body>
 <!--glow Trivia header-->
-<h1 id="header" class="sacramento glow center pt-5">Deimos Trivia</h1>
+<h1 id="header" class="sacramento glowRed center pt-5">Deimos Trivia</h1>
 <hr class="glow">
 
 <!--Category dropdown selector-->
@@ -789,7 +789,7 @@
 
         let content = "";
         content += `
-            <div class="question-card" id='card-${uniqueID}' onclick="">
+            <div class="question-card" id='card-${uniqueID}' onclick="" data-card="card">
             <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#exampleModal" onclick="">
              ${item.value}</div></div>`;
         document.getElementById(`row-${row}`).innerHTML += content;
@@ -808,7 +808,7 @@
             let currentModal = "";
             currentModal +=
                 <!-- Modal -->
-                `<div class="modal fade roboto" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+                `<div class="modal fade roboto" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -993,12 +993,26 @@
 
         //CHANGES PAGE CHARACTERISTICS BASED ON SELECTED GENRE
 
+
+        // $(".question-card").css("background-color","darkred");
+        $(".question-card").addClass("red");
+
+
+
         $('#selectNerdy').on('click', function () {
             selectedGenre = nerdy;
             $('body').css('background-image', 'url("img/redBlackBG.png")');
             $('#countdownTimer').css('color', 'white');
+            $("#header").addClass("glowRed");
+            $("#header").removeClass("glowBlue");
+            $("#header").removeClass("glowGrey");
+
+
             init();
             showQuestions();
+
+            $(".question-card").addClass("red");
+            $(".question-card").removeClass("green blue");
         });
 
 
@@ -1006,17 +1020,31 @@
             selectedGenre = programming;
             $('body').css('background-image', 'url("img/programmingBG.jpg")');
             $('#countdownTimer').css('color', 'white');
+            $("#header").removeClass("glowRed");
+            $("#header").addClass("glowBlue");
+            $("#header").removeClass("glowGrey");
+
+
             init();
             showQuestions();
+            $(".question-card").addClass("green");
+            $(".question-card").removeClass("red blue");
 
         });
 
         $('#selectStarWars').on('click', function () {
             selectedGenre = starWars;
             $('body').css('background-image', 'url("img/starWarsBG.jpg")');
-            $('#countdownTimer').css('color', 'red');
+            $('#countdownTimer').css('color','red');
+            $("#header").removeClass("glowRed");
+            $("#header").removeClass("glowBlue");
+            $("#header").addClass("glowGrey");
+
+
             init();
             showQuestions();
+            $(".question-card").addClass("blue");
+            $(".question-card").removeClass("green red");
         });
 
     });
