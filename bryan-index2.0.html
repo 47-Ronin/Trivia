@@ -11,7 +11,7 @@
 </head>
 <body>
 <!--glow Trivia header-->
-<h1 id="header" class="sacramento glow center pt-5">Deimos Trivia</h1>
+<h1 id="header" class="sacramento glowRed center pt-5">Deimos Trivia</h1>
 <hr class="glow">
 
 <!--Category dropdown selector-->
@@ -43,13 +43,13 @@
 <div id="scoreHolder" class="fixed-bottom">
     <ul>
         <li class="">
-            <div id="team1Score" class="josefin">8675309</div>
+            <div id="team1Score" class="lowBox josefin">8675309</div>
         </li>
         <li>
-            <div id="centerHolderDiv" class="josefin">Team 1 Leads!</div>
+            <div id="centerHolderDiv" class="lowBox josefin">Team 1 Leads!</div>
         </li>
         <li>
-            <div id="team2Score" class="josefin">8675309</div>
+            <div id="team2Score" class="lowBox josefin">8675309</div>
         </li>
     </ul>
 
@@ -784,7 +784,7 @@
 
         let content = "";
         content += `
-            <div class="question-card" id='card-${uniqueID}' onclick="">
+            <div class="question-card" id='card-${uniqueID}' onclick="" data-card="card">
             <div id="${row}-${item.number}" class="question-value" data-toggle="modal" data-target="#exampleModal" onclick="">
              ${item.value}</div></div>`;
         document.getElementById(`row-${row}`).innerHTML += content;
@@ -803,16 +803,16 @@
             let currentModal = "";
             currentModal +=
                 <!-- Modal -->
-                `<div class="modal fade roboto" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+                `<div class="modal fade roboto" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div id="modal-content" class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Question No.${item.number}</h5>
 <!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
 <!--            <span aria-hidden="true">&times;</span>-->
         </button>
         </div>
-        <div class="modal-body">
+        <div id="modal-body" class="modal-body">
             <div id="questionCard" >
             <!--    the Question ------------------------------------------->
         <div id="questionHolder">
@@ -843,7 +843,7 @@
             currentModal += `</div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" id="submitButton" data-toggle="modal" data-target="#exampleModal">Submit</button>
+            <button type="button" class="btn btn-dark" id="submitButton" data-toggle="modal" data-target="#exampleModal">Submit</button>
             </div>
             </div>
             </div>
@@ -986,34 +986,100 @@
 
 
         //CHANGES PAGE CHARACTERISTICS BASED ON SELECTED GENRE
+        $(".modal").addClass("modalRed");
+        $(".modal-body").addClass("modal-bodyRed");
+        $(".modal-content").addClass("modal-contentRed");
+
+
+
+
+        //Page load styling as per "nerdy" cat
+        $(".question-card").addClass("red");
+        $("hr").addClass("redBorder");
+        $(".lowBox").addClass("redLowBox");
+
+
+
+
+
 
         $('#selectNerdy').on('click', function () {
             selectedGenre = nerdy;
             $('body').css('background-image', 'url("img/redBlackBG.png")');
             $('#countdownTimer').css('color', 'white');
+            $("#header").addClass("glowRed");
+            $("#header").removeClass("glowGreen");
+            $("#header").removeClass("glowGrey");
+
+
             init();
             showQuestions();
+
+            $("hr").addClass("redBorder");
+            $("hr").removeClass("greenBorder blueBorder");
+
+            $(".lowBox").addClass("redLowBox");
+            $(".lowBox").removeClass("greenLowBox blueLowBox");
+
+
+            $(".question-card").addClass("red");
+            $(".question-card").removeClass("green blue");
+
+
         });
 
 
         $('#selectProgramming').on('click', function () {
             selectedGenre = programming;
-            $('body').css('background-image', 'url("img/programmingBG.jpg")');
+            $('body').css('background-image', 'url("img/programmingBG3.jpg")');
+            // $('body').css('background-size', 'cover');
+
             $('#countdownTimer').css('color', 'white');
+            $("#header").removeClass("glowRed");
+            $("#header").addClass("glowGreen");
+            $("#header").removeClass("glowGrey");
+
+            $("hr").addClass("greenBorder");
+            $("hr").removeClass("redBorder blueBorder");
+
+            $(".lowBox").addClass("greenLowBox");
+            $(".lowBox").removeClass("redLowBox blueLowBox");
+
             init();
             showQuestions();
+            $(".question-card").addClass("green");
+            $(".question-card").removeClass("red blue");
+
+
 
         });
 
         $('#selectStarWars').on('click', function () {
             selectedGenre = starWars;
             $('body').css('background-image', 'url("img/starWarsBG.jpg")');
-            $('#countdownTimer').css('color', 'red');
+            $('#countdownTimer').css('color','red');
+            $("#header").removeClass("glowRed");
+            $("#header").removeClass("glowGreen");
+            $("#header").addClass("glowGrey");
+
+            $("hr").addClass("blueBorder");
+            $("hr").removeClass("greenBorder redBorder");
+
+            $(".lowBox").addClass("blueLowBox");
+            $(".lowBox").removeClass("greenLowBox redLowBox");
+
+
             init();
             showQuestions();
+            $(".question-card").addClass("blue");
+            $(".question-card").removeClass("green red");
+
+
         });
 
     });
+
+
 
     showQuestions();
     gameplay.updateScore();
