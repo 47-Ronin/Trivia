@@ -22,13 +22,13 @@
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" id="selectNerdy" value="1" href="#">Nerdy</a>
-        <a class="dropdown-item" id="selectProgramming" value="2" href="#">Programming</a>
+        <a class="dropdown-item" id="selectProgramming" value="2" href="#">Web Developement</a>
         <a class="dropdown-item" id="selectStarWars" value="3" href="#">Star Wars</a>
     </div>
 </div>
 
 
-<!--HOLDS countdown timeer-->
+<!--HOLDS countdown timer-->
 <div id="countdownHolder" class="float-right fixed-top mr-0">
     <div id="countdownTimer"></div>
 </div>
@@ -274,8 +274,8 @@
             "available": true
         }, {
             "number": 2,
-            "q": "What does <code><!DOCTYPE html></code> mean?",
-            "choices": ["<em class='option-letter'>A</em> It means the document is a webpage", "<em class='option-letter'>B</em> It clarifies the version of HTML used", "C: It serves no purpose", "D: It tells your editor what HTML is"],
+            "q": "What does <code>!DOCTYPE html</code> mean?",
+            "choices": ["<em class='option-letter'>A</em> It means the document is a webpage", "<em class='option-letter'>B</em> It clarifies the language and version used", "C: It serves no purpose", "D: It tells your editor what HTML is"],
             "answer": "B",
             "value": 100,
             "available": true
@@ -310,7 +310,7 @@
             "available": true
         }, {
             "number": 2,
-            "q": "JavaScript calculations can be inaccurate when used with floats",
+            "q": "JavaScript calculations can be inaccurate when using with floats",
             "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
             "answer": "B",
             "value": 200,
@@ -360,7 +360,7 @@
             "available": true
         }, {
             "number": 4,
-            "q": "The following evaluates to TRUE: '0'",
+            "q": "The following evaluates to TRUE: '\"0\"'",
             "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
             "answer": "A",
             "value": 300,
@@ -377,12 +377,12 @@
             "number": 1,
             "q": "What does IP stand for?",
             "choices": ["<em class='option-letter'>A</em> Internet Protocol", "<em class='option-letter'>B</em> Information Protocol", "<em class='option-letter'>C</em> Information Protection", "<em class='option-letter'>D</em> Internet Protection"],
-            "answer": "Option1",
+            "answer": "A",
             "value": 400,
             "available": true
         }, {
             "number": 2,
-            "q": "Which of the following is NOT a value that the 'type' attribute of an input tag can have?",
+            "q": "Which of the following is NOT a value that the 'type' attribute of an 'input' tag can have?",
             "choices": ["<em class='option-letter'>A</em> Range", "<em class='option-letter'>B</em> Number", "<em class='option-letter'>C</em> Hidden", "<em class='option-letter'>D</em> Checked"],
             "answer": "D",
             "value": 400,
@@ -403,9 +403,9 @@
             "available": true
         }, {
             "number": 5,
-            "q": "The following expression evaluates to TRUE.  NaN == null",
+            "q": "The expression 'NaN == null' evaluates to... ",
             "choices": ["<em class='option-letter'>A</em> True", "<em class='option-letter'>B</em> False"],
-            "answer": "A",
+            "answer": "B",
             "value": 400,
             "available": true
         }],
@@ -677,7 +677,7 @@
     };
 
 
-    let selectedGenre = nerdy;
+    let selectedGenre;
     let answeredQuestions = [];
     let selectedQuestion = {};
     const gameplayD = {
@@ -711,17 +711,18 @@
                     this.updateScore();
                     return "";
                 }
+                alert(`Correct!`);
                 this.switchTurn();
                 console.log("Correct!");
             } else {
                 if (selectedQuestion !== {}) {
                     console.log(selectedQuestion.answer);
                     console.log("Incorrect!");
+                    alert(`Wrong!`);
                 }
             }
             this.updateScore();
             selectedQuestion = {};
-            alert(`Wrong!`);
         },
         selectQuestion: function (row, index) {
 
@@ -839,7 +840,7 @@
                 <input type="radio" id="D${uniqueID}" name="customRadio" value="D" class="custom-control-input">
                 <label class="custom-control-label" for="D${uniqueID}">${item.choices[3]}</label>
             </div>`
-            }
+            };
             currentModal += `</div>
             </div>
             <div class="modal-footer">
@@ -1015,7 +1016,6 @@
 
     });
 
-    showQuestions();
     gameplay.updateScore();
 
 </script>
