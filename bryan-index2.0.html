@@ -43,13 +43,13 @@
 <div id="scoreHolder" class="fixed-bottom">
     <ul>
         <li class="">
-            <div id="team1Score" class="josefin">8675309</div>
+            <div id="team1Score" class="lowBox josefin">8675309</div>
         </li>
         <li>
-            <div id="centerHolderDiv" class="josefin">Team 1 Leads!</div>
+            <div id="centerHolderDiv" class="lowBox josefin">Team 1 Leads!</div>
         </li>
         <li>
-            <div id="team2Score" class="josefin">8675309</div>
+            <div id="team2Score" class="lowBox josefin">8675309</div>
         </li>
     </ul>
 
@@ -996,6 +996,8 @@
 
         // $(".question-card").css("background-color","darkred");
         $(".question-card").addClass("red");
+        $("hr").addClass("redBorder");
+        $(".lowBox").addClass("redLowBox");
 
 
 
@@ -1004,31 +1006,51 @@
             $('body').css('background-image', 'url("img/redBlackBG.png")');
             $('#countdownTimer').css('color', 'white');
             $("#header").addClass("glowRed");
-            $("#header").removeClass("glowBlue");
+            $("#header").removeClass("glowGreen");
             $("#header").removeClass("glowGrey");
 
 
             init();
             showQuestions();
 
+            $("hr").addClass("redBorder");
+            $("hr").removeClass("greenBorder blueBorder");
+
+            $(".lowBox").addClass("redLowBox");
+            $(".lowBox").removeClass("greenLowBox blueLowBox");
+
+
+
             $(".question-card").addClass("red");
             $(".question-card").removeClass("green blue");
+
+            // $(".question-value").addClass("red");
+            // $(".question-value").removeClass("green blue");
         });
 
 
         $('#selectProgramming').on('click', function () {
             selectedGenre = programming;
-            $('body').css('background-image', 'url("img/programmingBG.jpg")');
+            $('body').css('background-image', 'url("img/programmingBG3.jpg")');
+            // $('body').css('background-size', 'cover');
+
             $('#countdownTimer').css('color', 'white');
             $("#header").removeClass("glowRed");
-            $("#header").addClass("glowBlue");
+            $("#header").addClass("glowGreen");
             $("#header").removeClass("glowGrey");
 
+            $("hr").addClass("greenBorder");
+            $("hr").removeClass("redBorder blueBorder");
+
+            $(".lowBox").addClass("greenLowBox");
+            $(".lowBox").removeClass("redLowBox blueLowBox");
 
             init();
             showQuestions();
             $(".question-card").addClass("green");
             $(".question-card").removeClass("red blue");
+            // $(".question-value").addClass("green");
+            // $(".question-value").removeClass("red blue");
 
         });
 
@@ -1037,14 +1059,22 @@
             $('body').css('background-image', 'url("img/starWarsBG.jpg")');
             $('#countdownTimer').css('color','red');
             $("#header").removeClass("glowRed");
-            $("#header").removeClass("glowBlue");
+            $("#header").removeClass("glowGreen");
             $("#header").addClass("glowGrey");
+
+            $("hr").addClass("blueBorder");
+            $("hr").removeClass("greenBorder redBorder");
+
+            $(".lowBox").addClass("blueLowBox");
+            $(".lowBox").removeClass("greenLowBox redLowBox");
 
 
             init();
             showQuestions();
             $(".question-card").addClass("blue");
             $(".question-card").removeClass("green red");
+            // $(".question-value").addClass("blue");
+            // $(".question-value").removeClass("green red");
         });
 
     });

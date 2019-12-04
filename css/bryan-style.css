@@ -51,23 +51,23 @@ body {
 }
 
 hr {
-    border: 2px solid darkred;
-    border-radius: 4px;
+    /*border: 2px solid darkred;*/
+    /*border-radius: 4px;*/
     width: 50%;
     margin: auto;
 }
 
-#team1Score, #team2Score, #centerHolderDiv {
-    background-color: white;
-    width: 200px;
-    height: 80px;
-    border: 6px solid darkred;
-    border-radius: 15px;
-    text-align: center;
-    font-size: 36px;
-    font-weight: bolder;
-    line-height: 80px;
-}
+/*#team1Score, #team2Score, #centerHolderDiv {*/
+/*    background-color: white;*/
+/*    width: 200px;*/
+/*    height: 80px;*/
+/*    border: 6px solid darkred;*/
+/*    border-radius: 15px;*/
+/*    text-align: center;*/
+/*    font-size: 36px;*/
+/*    font-weight: bolder;*/
+/*    line-height: 80px;*/
+/*}*/
 
 #centerHolderDiv {
     width: 300px;
@@ -112,19 +112,20 @@ hr {
 
 /*GREEN*/
 .glowGreen {
+    /*font-size: 80px;*/
     color: #fff;
-    -webkit-animation: glowGreen 1s ease-in-out infinite alternate;
-    -moz-animation: glowGreen 1s ease-in-out infinite alternate;
-    animation: glowGreen 1s ease-in-out infinite alternate;
-    opacity: 1 !important;
+    /*text-align: center;*/
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+    opacity: 1!important;
 }
-
-@-webkit-keyframes glowGreen {
+@-webkit-keyframes glow {
     from {
-        text-shadow: 4px 4px 5px green, 0 0 10px limegreen, 0 0 15px lime, 0 0 20px lawngreen, 0 0 25px forestgreen, 0 0 30px green, 0 0 40px lime;
+        text-shadow: 0 0 2px white, 0 0 5px lightgray, 0 0 8px lime, 0 0 10px limegreen, 0 0 12px green, 0 0 15px lawngreen, 0 0 19px greenyellow;
     }
     to {
-        text-shadow: 0 0 10px lime, 0 0 15px green, 0 0 20px forestgreen, 0 0 25px lawngreen, 0 0 30px green, 0 0 35px limegreen, 0 0 40px green;
+        text-shadow: 0 0 10px white, 0 0 15px lightgray, 0 0 20px limegreen, 0 0 25px lawngreen, 0 0 30px greenyellow, 0 0 35px lime, 0 0 40px limegreen;
     }
 }
 
@@ -146,6 +147,24 @@ hr {
     }
 }
 
+.glow {
+    /*font-size: 80px;*/
+    color: #fff;
+    /*text-align: center;*/
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+    opacity: 1!important;
+}
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 2px white, 0 0 5px lightgray, 0 0 8px lime, 0 0 10px limegreen, 0 0 12px green, 0 0 15px lawngreen, 0 0 19px greenyellow;
+    }
+    to {
+        text-shadow: 0 0 10px white, 0 0 15px lightgray, 0 0 20px limegreen, 0 0 25px lawngreen, 0 0 30px greenyellow, 0 0 35px lime, 0 0 40px limegreen;
+    }
+}
+
 /*question button styling*/
 .question-card {
     height: 60px;
@@ -153,7 +172,7 @@ hr {
     width: 100px;
     /*background-color: darkred;*/
     opacity: .9;
-    border: 2px solid black;
+    /*border: 2px solid black;*/
     border-radius: 10px;
     margin: 15px;
     text-align: center;
@@ -167,12 +186,6 @@ hr {
 /*    color: gray;*/
 
 /*}*/
-
-
-.question-card:hover {
-    color: darkred;
-    background-color: white;
-}
 
 
 
@@ -221,15 +234,95 @@ hr {
 }
 
 
+/*UPDATES to DOM with cat select below*/
 .red {
-    background-color: darkred!important;
+    background-color: darkred;
+    color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.red:hover {
+    color: darkred;
+    background-color: white;
+
 }
 
 .green {
-    background-color: lawngreen!important;
+    background-color: lime;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.green:hover {
+    color: lime;
+    background-color: black;
 }
 
 .blue {
-    background-color: darkblue!important;
+    background-color: darkblue;
+    color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.blue:hover {
+    color: #BED8F5;
+    background-color: gray;
+}
+
+.redBorder {
+    border: 2px solid darkred;
+    border-radius: 4px;
+}
+
+.greenBorder{
+    border: 2px solid lime;
+    border-radius: 4px;
+}
+
+.blueBorder {
+    border: 2px solid darkblue;
+    border-radius: 4px;
+}
+
+
+.redLowBox {
+    background-color: white;
+    width: 200px;
+    height: 80px;
+    border: 6px solid darkred;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bolder;
+    line-height: 80px;
+}
+
+.greenLowBox {
+    background-color: black;
+    color: white;
+    width: 200px;
+    height: 80px;
+    border: 6px solid lime;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bolder;
+    line-height: 80px;
+}
+
+.blueLowBox {
+    background-color: darkblue;
+    color: #BED8F5;
+    width: 200px;
+    height: 80px;
+    border: 6px solid #BED8F5;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bolder;
+    line-height: 80px;
 }
 
