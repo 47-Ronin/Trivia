@@ -699,36 +699,38 @@
             }
         },
         answerQuestion: function (response) {
-
-            //console log below comes back undefined?
-            // console.log(selectedQuestion.answer);
-
+            this.remainingQuestions -= 1;
             if (selectedQuestion.answer === response) {
                 this[this.turn].score += selectedQuestion.value;
-                if (this[this.turn].score >= this.scoreLimit) {
-                    $("#centerDivHolder").html(`${this.turn} Wins!`);
-                    alert(this.turn + " wins!!!");
-                    this.updateScore();
-                    return "";
-                }
-                this.switchTurn();
+                alert(`Correct!`);
                 console.log("Correct!");
             } else {
                 if (selectedQuestion !== {}) {
                     console.log(selectedQuestion.answer);
                     console.log("Incorrect!");
+                    alert(`Wrong!`);
                 }
             }
             this.updateScore();
+            if (this.checkIfEnd()) {
+                if (this.team1.score > this.team2.score) {
+                    $("#centerDivHolder").html(`Team 1 Wins!`);
+                    alert("Team 1 wins!!!");
+                } else if (this.team2.score > this.team1.score){
+                    $("#centerDivHolder").html(`Team 2 Wins!`);
+                    alert("Team 2 wins!!!");
+                } else {
+                    alert("Tie!")
+                }
+                return "";
+            }
+            this.switchTurn();
             selectedQuestion = {};
-            alert(`Wrong!`);
         },
         selectQuestion: function (row, index) {
 
             const uniqueID = `${row}-${index}`;
             if (selectedGenre[row][index].available === true) {
-
-                console.log("BEFORE: " + selectedGenre[row][index].available);
 
                 selectedQuestion = selectedGenre[row][index];
 
@@ -742,8 +744,6 @@
             } else {
                 //If question is NOT available
                 // selectedQuestion = {};
-                console.log("AFTER: " + selectedGenre[row][index].available);
-                console.log("Unavailable");
             }
         },
         updateScore: function () {
@@ -761,6 +761,13 @@
                 }
             } else if (this.team1.score === this.team2.score) {
                 document.getElementById("centerHolderDiv").innerHTML = "Game is tied!";
+            }
+        },
+        checkIfEnd: function () {
+            if ( ((this.team1.score > this.scoreLimit) || (this.team2.score > this.scoreLimit)) || (this.remainingQuestions <= 0) ){
+                return true;
+            } else {
+                return false;
             }
         }
     };
@@ -967,7 +974,7 @@
                     clearInterval(timer);
                     $("#countdownHolder").fadeOut();
                     $("#submitButton").prop("disabled", true);
-                    console.log("ready for next question");
+                    // console.log("ready for next question");
 
                 }
             }, 1000);
@@ -979,10 +986,9 @@
         }
 
         $('#modalHolder').on('click', '#submitButton', function () {
-        if(selectedQuestion !== {}) {
-        console.log("answring question");
-        gameplay.answerQuestion(getVal());
-        }});
+            if(selectedQuestion !== {}) {
+                gameplay.answerQuestion(getVal());
+            }});
 
 
         //CHANGES PAGE CHARACTERISTICS BASED ON SELECTED GENRE
@@ -992,94 +998,44 @@
 
 
 
-
         //Page load styling as per "nerdy" cat
         $(".question-card").addClass("red");
         $("hr").addClass("redBorder");
         $(".lowBox").addClass("redLowBox");
 
 
-
-
-
+        //CHANGES PAGE CHARACTERISTICS BASED ON SELECTED GENRE
 
         $('#selectNerdy').on('click', function () {
             selectedGenre = nerdy;
             $('body').css('background-image', 'url("img/redBlackBG.png")');
             $('#countdownTimer').css('color', 'white');
-            $("#header").addClass("glowRed");
-            $("#header").removeClass("glowGreen");
-            $("#header").removeClass("glowGrey");
-
-
             init();
             showQuestions();
-
-            $("hr").addClass("redBorder");
-            $("hr").removeClass("greenBorder blueBorder");
-
-            $(".lowBox").addClass("redLowBox");
-            $(".lowBox").removeClass("greenLowBox blueLowBox");
-
-
-            $(".question-card").addClass("red");
-            $(".question-card").removeClass("green blue");
-
-
         });
 
 
         $('#selectProgramming').on('click', function () {
             selectedGenre = programming;
-            $('body').css('background-image', 'url("img/programmingBG3.jpg")');
-            // $('body').css('background-size', 'cover');
-
+            $('body').css('background-image', 'url("img/programmingBG.jpg")');
             $('#countdownTimer').css('color', 'white');
-            $("#header").removeClass("glowRed");
-            $("#header").addClass("glowGreen");
-            $("#header").removeClass("glowGrey");
-
-            $("hr").addClass("greenBorder");
-            $("hr").removeClass("redBorder blueBorder");
-
-            $(".lowBox").addClass("greenLowBox");
-            $(".lowBox").removeClass("redLowBox blueLowBox");
-
             init();
             showQuestions();
-            $(".question-card").addClass("green");
-            $(".question-card").removeClass("red blue");
-
-
 
         });
 
         $('#selectStarWars').on('click', function () {
             selectedGenre = starWars;
             $('body').css('background-image', 'url("img/starWarsBG.jpg")');
-            $('#countdownTimer').css('color','red');
-            $("#header").removeClass("glowRed");
-            $("#header").removeClass("glowGreen");
-            $("#header").addClass("glowGrey");
-
-            $("hr").addClass("blueBorder");
-            $("hr").removeClass("greenBorder redBorder");
-
-            $(".lowBox").addClass("blueLowBox");
-            $(".lowBox").removeClass("greenLowBox redLowBox");
-
-
+            $('#countdownTimer').css('color', 'red');
             init();
             showQuestions();
-            $(".question-card").addClass("blue");
-            $(".question-card").removeClass("green red");
-
-
         });
+
 
     });
 
-    showQuestions();
+    init();
     gameplay.updateScore();
 
 </script>
