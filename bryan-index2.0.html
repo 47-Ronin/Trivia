@@ -277,7 +277,7 @@
             "available": true
         }, {
             "number": 2,
-            "q": "What does <code><!DOCTYPE html></code> mean?",
+            "q": "What does <code>!DOCTYPE html</code> mean?",
             "choices": ["<em class='option-letter'>A</em> It means the document is a webpage", "<em class='option-letter'>B</em> It clarifies the version of HTML used", "C: It serves no purpose", "D: It tells your editor what HTML is"],
             "answer": "B",
             "value": 100,
@@ -684,7 +684,7 @@
     let answeredQuestions = [];
     let selectedQuestion = {};
     const gameplayD = {
-        scoreLimit: 5,
+        scoreLimit: 1500,
         team1: {
             name: "",
             score: 0
@@ -721,14 +721,14 @@
                     //INSERT CODE TO FLASH CARD DIV AND PUSH 'TEAM 1 WINS!'
                     $("#questionButtons").html("<h1 id='winning' class='winCard glowBow'>Team 1 WINS!</h1>");
 
-                    alert("Team 1 wins!!!");
+                    // alert("Team 1 wins!!!");
                 } else if (this.team2.score > this.team1.score) {
                     $("#centerDivHolder").html(`Team 2 Wins!`);
 
                     //INSERT CODE TO FLASH CARD DIV AND PUSH 'TEAM 1 WINS!'
                     $("#questionButtons").html("<h1 id='winning' class='winCard glowBow'>Team 2 WINS!<h1>");
 
-                    alert("Team 2 wins!!!");
+                    // alert("Team 2 wins!!!");
                 } else {
                     alert("Tie!")
                 }
