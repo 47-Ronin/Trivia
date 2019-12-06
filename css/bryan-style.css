@@ -115,12 +115,12 @@ hr {
     /*font-size: 80px;*/
     color: #fff;
     /*text-align: center;*/
-    -webkit-animation: glow 1s ease-in-out infinite alternate;
-    -moz-animation: glow 1s ease-in-out infinite alternate;
-    animation: glow 1s ease-in-out infinite alternate;
+    -webkit-animation: glowGreen 1s ease-in-out infinite alternate;
+    -moz-animation: glowGreen 1s ease-in-out infinite alternate;
+    animation: glowGreen 1s ease-in-out infinite alternate;
     opacity: 1!important;
 }
-@-webkit-keyframes glow {
+@-webkit-keyframes glowGreen {
     from {
         text-shadow: 0 0 2px white, 0 0 5px lightgray, 0 0 8px lime, 0 0 10px limegreen, 0 0 12px green, 0 0 15px lawngreen, 0 0 19px greenyellow;
     }
@@ -147,21 +147,21 @@ hr {
     }
 }
 
-.glow {
+.glowBow {
     /*font-size: 80px;*/
     color: #fff;
     /*text-align: center;*/
-    -webkit-animation: glow 1s ease-in-out infinite alternate;
-    -moz-animation: glow 1s ease-in-out infinite alternate;
-    animation: glow 1s ease-in-out infinite alternate;
+    -webkit-animation: glowBow 1s ease-in-out infinite alternate;
+    -moz-animation: glowBow 1s ease-in-out infinite alternate;
+    animation: glowBow 1s ease-in-out infinite alternate;
     opacity: 1!important;
 }
-@-webkit-keyframes glow {
+@-webkit-keyframes glowBow {
     from {
-        text-shadow: 0 0 2px white, 0 0 5px lightgray, 0 0 8px lime, 0 0 10px limegreen, 0 0 12px green, 0 0 15px lawngreen, 0 0 19px greenyellow;
+        text-shadow: 0 0 2px red, 0 0 5px orange, 0 0 8px yellow, 0 0 10px green, 0 0 12px blue, 0 0 15px indigo, 0 0 19px violet;
     }
     to {
-        text-shadow: 0 0 10px white, 0 0 15px lightgray, 0 0 20px limegreen, 0 0 25px lawngreen, 0 0 30px greenyellow, 0 0 35px lime, 0 0 40px limegreen;
+        text-shadow: 0 0 10px red, 0 0 15px orange, 0 0 20px yellow, 0 0 25px green, 0 0 30px blue, 0 0 35px indigo, 0 0 40px violet;
     }
 }
 
@@ -371,6 +371,14 @@ MODAL STYLING
     background-color: darkblue;
     font-size: 1.5rem;
     border: 5px solid black;
+}
+
+.winCard {
+    font-family: "Josefin Slab";
+    font-size: 7em;
+    text-align: center;
+    padding-top: 150px;
+    font-weight: bolder;
 }
 
 

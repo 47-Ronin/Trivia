@@ -36,6 +36,9 @@
 
 <!--question cards/buttons-->
 <div id="questionButtons">
+    <div id="winCard">
+
+    </div>
 
 </div>
 
@@ -681,7 +684,7 @@
     let answeredQuestions = [];
     let selectedQuestion = {};
     const gameplayD = {
-        scoreLimit: Infinity,
+        scoreLimit: 5,
         team1: {
             name: "",
             score: 0
@@ -715,9 +718,16 @@
             if (this.checkIfEnd()) {
                 if (this.team1.score > this.team2.score) {
                     $("#centerDivHolder").html(`Team 1 Wins!`);
+                    //INSERT CODE TO FLASH CARD DIV AND PUSH 'TEAM 1 WINS!'
+                    $("#questionButtons").html("<h1 id='winning' class='winCard glowBow'>Team 1 WINS!</h1>");
+
                     alert("Team 1 wins!!!");
                 } else if (this.team2.score > this.team1.score) {
                     $("#centerDivHolder").html(`Team 2 Wins!`);
+
+                    //INSERT CODE TO FLASH CARD DIV AND PUSH 'TEAM 1 WINS!'
+                    $("#questionButtons").html("<h1 id='winning' class='winCard glowBow'>Team 2 WINS!<h1>");
+
                     alert("Team 2 wins!!!");
                 } else {
                     alert("Tie!")
@@ -940,6 +950,7 @@
 
             $(this).css('visibility', 'hidden');
 
+            $(".dropdown").fadeOut();
 
             startTimer();
         });
@@ -1014,8 +1025,14 @@
             $("#header").removeClass("glowGrey");
 
 
+
+
             init();
             showQuestions();
+
+            $("#winning").addClass("glowRed");
+            $("#winning").removeClass("glowGreen");
+            $("#winning").removeClass("glowGrey");
 
             $("hr").addClass("redBorder");
             $("hr").removeClass("greenBorder blueBorder");
@@ -1041,6 +1058,8 @@
             $("#header").addClass("glowGreen");
             $("#header").removeClass("glowGrey");
 
+
+
             $("hr").addClass("greenBorder");
             $("hr").removeClass("redBorder blueBorder");
 
@@ -1049,6 +1068,11 @@
 
             init();
             showQuestions();
+
+            $("#winning").removeClass("glowRed");
+            $("#winning").addClass("glowGreen");
+            $("#winning").removeClass("glowGrey");
+
             $(".question-card").addClass("green");
             $(".question-card").removeClass("red blue");
 
@@ -1063,6 +1087,9 @@
             $("#header").removeClass("glowGreen");
             $("#header").addClass("glowGrey");
 
+
+
+
             $("hr").addClass("blueBorder");
             $("hr").removeClass("greenBorder redBorder");
 
@@ -1072,6 +1099,11 @@
 
             init();
             showQuestions();
+
+            $("#winning").removeClass("glowRed");
+            $("#winning").removeClass("glowGreen");
+            $("#winning").addClass("glowGrey");
+
             $(".question-card").addClass("blue");
             $(".question-card").removeClass("green red");
 
