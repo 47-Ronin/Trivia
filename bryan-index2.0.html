@@ -685,6 +685,7 @@
     let selectedQuestion = {};
     const gameplayD = {
         scoreLimit: 1500,
+        remainingQuestions: 0,
         team1: {
             name: "",
             score: 0
@@ -702,7 +703,6 @@
             }
         },
         answerQuestion: function (response) {
-            this.remainingQuestions -= 1;
             if (selectedQuestion.answer === response) {
                 this[this.turn].score += selectedQuestion.value;
                 alert(`Correct!`);
@@ -738,7 +738,7 @@
             selectedQuestion = {};
         },
         selectQuestion: function (row, index) {
-
+            this.remainingQuestions -= 1;
             const uniqueID = `${row}-${index}`;
             if (selectedGenre[row][index].available === true) {
 
@@ -870,7 +870,6 @@
             $("#modalHolder").html(currentModal);
             num++;
         }
-        ;
     }
 
 
